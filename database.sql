@@ -78,7 +78,7 @@ DROP TABLE IF EXISTS `pankkikortti`;
 CREATE TABLE `pankkikortti` (
   `id_Pankkikortti` int NOT NULL AUTO_INCREMENT,
   `kortinnumero` varchar(45) NOT NULL,
-  `pinkoodi` int NOT NULL,
+  `pinkoodi` varchar(45) NOT NULL,
   `id_Asiakas` int NOT NULL,
   `id_Tili` int NOT NULL,
   PRIMARY KEY (`id_Pankkikortti`),
