@@ -1,2 +1,2 @@
 # group19
-<img src= "koulu/erkaavio.png">
+<img src= "documents/erkaavio.png">
