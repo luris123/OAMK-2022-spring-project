@@ -1,2 +1,2 @@
 # group19
-<img src= "documents/erkaavio.png">
+<img src= "documents/unknown.png">
