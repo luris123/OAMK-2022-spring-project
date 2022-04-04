@@ -6,10 +6,15 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    objectDLLPinCode = new DLLPinCode;
+    objectDLLPinCode->openDLLPinCode();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+
 
