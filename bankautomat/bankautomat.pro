@@ -22,3 +22,8 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+win32: LIBS += -L$$PWD/DLLPinCode/build/debug/ -lDLLPinCode
+
+INCLUDEPATH += $$PWD/DLLPinCode
+DEPENDPATH += $$PWD/DLLPinCode
