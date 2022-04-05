@@ -1,4 +1,5 @@
 QT       += core gui
+QT += serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -11,6 +12,7 @@ CONFIG += c++11
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+
     talletarahaa.cpp
 
 HEADERS += \
@@ -21,6 +23,17 @@ FORMS += \
     mainwindow.ui \
     talletarahaa.ui
 
+    paakayttoliittyma.cpp
+
+HEADERS += \
+    mainwindow.h \
+    paakayttoliittyma.h
+
+FORMS += \
+    mainwindow.ui \
+    paakayttoliittyma.ui
+
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
@@ -30,3 +43,10 @@ win32: LIBS += -L$$PWD/DLLPinCode/build/debug/ -lDLLPinCode
 
 INCLUDEPATH += $$PWD/DLLPinCode
 DEPENDPATH += $$PWD/DLLPinCode
+
+
+
+win32: LIBS += -L$$PWD/DLLSerialPort/build/debug/ -lDLLSerialPort
+
+INCLUDEPATH += $$PWD/DLLSerialPort
+DEPENDPATH += $$PWD/DLLSerialPort
