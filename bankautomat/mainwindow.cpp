@@ -7,8 +7,10 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    objectDLLPinCode = new DLLPinCode;
-    objectDLLPinCode->openDLLPinCode();
+    objectDLLSerialPort = new DLLSerialPort;
+   // objectDLLPinCode = new DLLPinCode;
+  //  objectDLLPinCode->openDLLPinCode();
+
 }
 
 MainWindow::~MainWindow()
