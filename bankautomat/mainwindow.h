@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "dllpincode.h"
+#include "talletarahaa.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -22,5 +23,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     DLLPinCode *objectDLLPinCode;
+    TalletaRahaa *objectTalletaRahaa; // Talleta rahaa aloitus
 };
 #endif // MAINWINDOW_H

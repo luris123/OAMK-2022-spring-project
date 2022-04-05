@@ -10,13 +10,16 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    talletarahaa.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    talletarahaa.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    talletarahaa.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

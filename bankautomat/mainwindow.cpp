@@ -7,8 +7,11 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    objectDLLPinCode = new DLLPinCode;
-    objectDLLPinCode->openDLLPinCode();
+    objectTalletaRahaa = new TalletaRahaa;
+    objectTalletaRahaa->exec();
+
+    //objectDLLPinCode = new DLLPinCode;
+    //objectDLLPinCode->openDLLPinCode();
 }
 
 MainWindow::~MainWindow()
