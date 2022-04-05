@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "dllpincode.h"
+#include "dllserialport.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -22,5 +23,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     DLLPinCode *objectDLLPinCode;
+    DLLSerialPort *objectDLLSerialPort;
 };
 #endif // MAINWINDOW_H

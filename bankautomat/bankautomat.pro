@@ -1,4 +1,5 @@
 QT       += core gui
+QT += serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -27,3 +28,10 @@ win32: LIBS += -L$$PWD/DLLPinCode/build/debug/ -lDLLPinCode
 
 INCLUDEPATH += $$PWD/DLLPinCode
 DEPENDPATH += $$PWD/DLLPinCode
+
+
+
+win32: LIBS += -L$$PWD/DLLSerialPort/build/debug/ -lDLLSerialPort
+
+INCLUDEPATH += $$PWD/DLLSerialPort
+DEPENDPATH += $$PWD/DLLSerialPort
