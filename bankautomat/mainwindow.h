@@ -6,6 +6,7 @@
 #include "talletarahaa.h"
 #include "paakayttoliittyma.h"
 #include "dllserialport.h"
+#include "nostarahaa.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -34,6 +35,7 @@ private:
 
     paakayttoliittyma *objectpaakayttoliittyma;
     TalletaRahaa *objectTalletaRahaa; // Talleta rahaa aloitus
+    NostaRahaa *objectNostaRahaa;
 
 
 };

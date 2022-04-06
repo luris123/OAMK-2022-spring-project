@@ -12,16 +12,19 @@ CONFIG += c++11
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    nostarahaa.cpp \
     paakayttoliittyma.cpp \
     talletarahaa.cpp
 
 HEADERS += \
     mainwindow.h \
+    nostarahaa.h \
     paakayttoliittyma.h \
     talletarahaa.h
 
 FORMS += \
     mainwindow.ui \
+    nostarahaa.ui \
     talletarahaa.ui \
     paakayttoliittyma.ui
 
