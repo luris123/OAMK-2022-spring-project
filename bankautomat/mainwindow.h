@@ -3,10 +3,8 @@
 
 #include <QMainWindow>
 #include "dllpincode.h"
-#include "talletarahaa.h"
 #include "paakayttoliittyma.h"
 #include "dllserialport.h"
-#include "nostarahaa.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -35,9 +33,6 @@ private:
     DLLSerialPort *objectDLLSerialPort;
 
     paakayttoliittyma *objectpaakayttoliittyma;
-    TalletaRahaa *objectTalletaRahaa; // Talleta rahaa aloitus
-    NostaRahaa *objectNostaRahaa;
-
 
 };
 #endif // MAINWINDOW_H
