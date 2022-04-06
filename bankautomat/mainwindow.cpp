@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     objectDLLSerialPort = new DLLSerialPort;
+    objectDLLPinCode = new DLLPinCode;
     //objectpaakayttoliittyma = new paakayttoliittyma;
     //objectpaakayttoliittyma -> exec();
 
@@ -17,10 +18,11 @@ MainWindow::MainWindow(QWidget *parent)
     //objectNostaRahaa = new NostaRahaa;
     //objectNostaRahaa -> exec();
 
-    objectDLLPinCode = new DLLPinCode;
-
     connect(objectDLLSerialPort, SIGNAL(kortinNumeroSignal(QString)),
             this, SLOT(kortinNumeroSlot(QString)));
+
+    connect(objectDLLPinCode, SIGNAL(pinkoodiInterface(QString)),
+           this, SLOT(pinkoodiSlot(QString)));
 }
 
 MainWindow::~MainWindow()
@@ -29,11 +31,9 @@ MainWindow::~MainWindow()
 }
 
 
-
-
 void MainWindow::on_pushButton_clicked()
 {
-    objectDLLPinCode->openDLLPinCode();
+   objectDLLPinCode->naytaPinkoodiKayttoliittyma();
 }
 
 void MainWindow::kortinNumeroSlot(QString kortinnumeroDLL)
@@ -42,6 +42,24 @@ void MainWindow::kortinNumeroSlot(QString kortinnumeroDLL)
     qDebug() << "Kortinnumero exessä: " << kortinnumeroDLL;
     //QString kortinnumero = kortinnumeroDLL??
     //asiakkaanSalasana = restistä asiakaan pinkoodi???
-    objectDLLPinCode->openDLLPinCode();
+    objectDLLPinCode->naytaPinkoodiKayttoliittyma();
 }
 
+void MainWindow::pinkoodiSlot(QString pinkoodiDLL)
+{
+    //restiltä joko false tai true ja tarkistetaan onko credit tiliä
+    qDebug() << "pinkoodi dllPinkoodilta: " << pinkoodiDLL;
+    /*if(jos pinkoodi oikein)
+     * {
+     *  if(kysytään onko credit tiliä)
+     *  {
+     *     Jos ei ole niin, avataan valise tili käyttöliittymä
+     *  }
+     * }
+     * else
+     * kerrotaan dllpinkoodille että pinkoodi väärin
+     * */
+}
+
+//objectDLLRESTAPI->annaAsiakkaanTiedot();
+//objectDLLRESTAPI->annaTilinTiedot();

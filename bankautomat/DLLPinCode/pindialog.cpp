@@ -12,17 +12,9 @@ PinDialog::PinDialog(QWidget *parent) :
 PinDialog::~PinDialog()
 {
     delete ui;
+    ui = nullptr;
 }
 
-QString PinDialog::getPinDialogValue()
-{
-    return dialogValue;
-}
-
-void PinDialog::setDialogValue(QString a)
-{
-    dialogValue = a;
-}
 
 void PinDialog::on_A1_clicked()
 {
@@ -103,6 +95,6 @@ void PinDialog::on_A0_clicked()
 
 void PinDialog::on_EnterBtn_clicked()
 {
-    setDialogValue(PinKoodi);
-    qDebug() << PinKoodi;
+    qDebug() << "saatu pinkoodi lähetetään interfacelle";
+    emit pinkoodiEngine(PinKoodi);
 }

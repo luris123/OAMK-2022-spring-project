@@ -14,8 +14,6 @@ class PinDialog : public QDialog
 public:
     explicit PinDialog(QWidget *parent = nullptr);
     ~PinDialog();
-    QString getPinDialogValue();
-    void setDialogValue(QString a);
 
 private slots:
     void on_A1_clicked();
@@ -44,8 +42,10 @@ private slots:
 
 private:
     Ui::PinDialog *ui;
-    QString dialogValue;
     QString PinKoodi;
+
+signals:
+    void pinkoodiEngine(QString);
 };
 
 #endif // PINDIALOG_H

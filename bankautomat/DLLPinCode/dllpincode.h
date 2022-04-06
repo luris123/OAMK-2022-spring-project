@@ -4,15 +4,26 @@
 #include "pindialog.h"
 #include "DLLPinCode_global.h"
 
-class DLLPINCODE_EXPORT DLLPinCode
+#include <QDebug>
+#include <QObject>
+
+class DLLPINCODE_EXPORT DLLPinCode : public QObject
 {
+    Q_OBJECT
 public:
-    void openDLLPinCode();
-    QString returnPinCode();
+    DLLPinCode();
+    ~DLLPinCode();
+
+    void naytaPinkoodiKayttoliittyma();
 
 private:
     PinDialog *objectPinDialog;
-    QString DLLValue;
+
+public slots:
+    void pinkoodiSlot(QString);
+
+signals:
+    void pinkoodiInterface(QString);
 };
 
 #endif // DLLPINCODE_H

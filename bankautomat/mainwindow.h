@@ -26,6 +26,7 @@ private slots:
 
 public slots:
     void kortinNumeroSlot(QString);
+    void pinkoodiSlot(QString);
 
 private:
     Ui::MainWindow *ui;
