@@ -1,14 +1,26 @@
 #include "dllpincode.h"
 
-void DLLPinCode::openDLLPinCode()
+DLLPinCode::DLLPinCode()
 {
     objectPinDialog = new PinDialog;
-    objectPinDialog -> exec();
-    DLLValue = objectPinDialog -> getPinDialogValue();
 
+    connect(objectPinDialog, SIGNAL(pinkoodiEngine(QString)),
+            this, SLOT(pinkoodiSlot(QString)));
 }
 
-QString DLLPinCode::returnPinCode()
+DLLPinCode::~DLLPinCode()
 {
-    return DLLValue;
+    delete objectPinDialog;
+    objectPinDialog = nullptr;
+}
+
+void DLLPinCode::naytaPinkoodiKayttoliittyma()
+{
+    objectPinDialog->show();
+}
+
+void DLLPinCode::pinkoodiSlot(QString pinkoodiEnginelta)
+{
+   qDebug() << "pinkoodi saatu engineltä...lähetetään exelle";
+   emit pinkoodiInterface(pinkoodiEnginelta);
 }

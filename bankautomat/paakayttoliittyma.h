@@ -15,6 +15,12 @@ public:
     explicit paakayttoliittyma(QWidget *parent = nullptr);
     ~paakayttoliittyma();
 
+private slots:
+
+
+
+    void on_withdrawBtn_clicked();
+
 private:
     Ui::paakayttoliittyma *ui;
 };

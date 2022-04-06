@@ -12,3 +12,9 @@ paakayttoliittyma::~paakayttoliittyma()
 {
     delete ui;
 }
+
+void paakayttoliittyma::on_withdrawBtn_clicked()
+{
+
+}
+
