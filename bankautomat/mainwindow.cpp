@@ -41,7 +41,6 @@ void MainWindow::kortinNumeroSlot(QString kortinnumeroDLL)
     qDebug() << "kortintiedot saatu dllSerialPortilta...avataan pincode käyttöliittymä";
     qDebug() << "Kortinnumero exessä: " << kortinnumeroDLL;
     //QString kortinnumero = kortinnumeroDLL??
-    //asiakkaanSalasana = restistä asiakaan pinkoodi???
     objectDLLPinCode->naytaPinkoodiKayttoliittyma();
 }
 
@@ -51,13 +50,17 @@ void MainWindow::pinkoodiSlot(QString pinkoodiDLL)
     qDebug() << "pinkoodi dllPinkoodilta: " << pinkoodiDLL;
     /*if(jos pinkoodi oikein)
      * {
+     * //objectDLLPinCode->suljeKayttoliittyma???
      *  if(kysytään onko credit tiliä)
      *  {
      *     Jos ei ole niin, avataan valise tili käyttöliittymä
      *  }
      * }
-     * else
-     * kerrotaan dllpinkoodille että pinkoodi väärin
+     * else if(pinkoodi väärin)
+     * {
+     *      kerrotaan dllpinkoodille että pinkoodi väärin
+     *      emit pinkoodiVaarin();
+     * }
      * */
 }
 
