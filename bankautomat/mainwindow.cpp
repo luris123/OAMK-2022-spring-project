@@ -13,6 +13,9 @@ MainWindow::MainWindow(QWidget *parent)
     //objectTalletaRahaa = new TalletaRahaa;
     //objectTalletaRahaa->exec();
 
+    //objectNostaRahaa = new NostaRahaa;
+    //objectNostaRahaa -> exec();
+
     objectDLLPinCode = new DLLPinCode;
 
 
