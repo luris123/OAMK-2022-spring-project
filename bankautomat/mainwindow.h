@@ -3,9 +3,8 @@
 
 #include <QMainWindow>
 #include "dllpincode.h"
-
 #include "talletarahaa.h"
-
+#include "paakayttoliittyma.h"
 #include "dllserialport.h"
 
 
@@ -24,10 +23,12 @@ public:
 private slots:
 
 
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     DLLPinCode *objectDLLPinCode;
-
+    paakayttoliittyma *objectpaakayttoliittyma;
     TalletaRahaa *objectTalletaRahaa; // Talleta rahaa aloitus
 
     DLLSerialPort *objectDLLSerialPort;
