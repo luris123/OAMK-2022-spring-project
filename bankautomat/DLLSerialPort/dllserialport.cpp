@@ -1,6 +1,6 @@
 #include "dllserialport.h"
 
-DLLSerialPort::DLLSerialPort(QObject *parent) : QObject(parent)
+DLLSerialPort::DLLSerialPort()
 {
     objectSerialPortEngine = new SerialPortEngine;
 
@@ -10,11 +10,12 @@ DLLSerialPort::DLLSerialPort(QObject *parent) : QObject(parent)
 
 DLLSerialPort::~DLLSerialPort()
 {
-
+    delete objectSerialPortEngine;
+    objectSerialPortEngine = nullptr;
 }
 
 void DLLSerialPort::kortinVastaanottoSlot(QString kortinNumero)
 {
-    qDebug() << "interface: " << kortinNumero;
+    qDebug() << "Kortintiedot saatu engineltä...lähetetään exelle";
     emit kortinNumeroSignal(kortinNumero);
 }

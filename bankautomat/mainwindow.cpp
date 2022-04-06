@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    objectDLLSerialPort = new DLLSerialPort;
     //objectpaakayttoliittyma = new paakayttoliittyma;
     //objectpaakayttoliittyma -> exec();
 
@@ -15,12 +16,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     objectDLLPinCode = new DLLPinCode;
 
-
-    objectDLLSerialPort = new DLLSerialPort;
-
-
-
-
+    connect(objectDLLSerialPort, SIGNAL(kortinNumeroSignal(QString)),
+            this, SLOT(kortinNumeroSlot(QString)));
 }
 
 MainWindow::~MainWindow()
@@ -33,6 +30,15 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-     objectDLLPinCode->openDLLPinCode();
+    objectDLLPinCode->openDLLPinCode();
+}
+
+void MainWindow::kortinNumeroSlot(QString kortinnumeroDLL)
+{
+    qDebug() << "kortintiedot saatu dllSerialPortilta...avataan pincode käyttöliittymä";
+    qDebug() << "Kortinnumero exessä: " << kortinnumeroDLL;
+    //QString kortinnumero = kortinnumeroDLL??
+    //asiakkaanSalasana = restistä asiakaan pinkoodi???
+    objectDLLPinCode->openDLLPinCode();
 }
 

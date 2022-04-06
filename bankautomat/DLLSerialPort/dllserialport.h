@@ -11,7 +11,7 @@ class DLLSERIALPORT_EXPORT DLLSerialPort : public QObject
     Q_OBJECT
 
 public:
-    DLLSerialPort(QObject *parent = nullptr);
+    DLLSerialPort();
     ~DLLSerialPort();
 
 public slots:

@@ -21,17 +21,20 @@ public:
     ~MainWindow();
 
 private slots:
-
-
     void on_pushButton_clicked();
+
+public slots:
+    void kortinNumeroSlot(QString);
 
 private:
     Ui::MainWindow *ui;
+
     DLLPinCode *objectDLLPinCode;
+    DLLSerialPort *objectDLLSerialPort;
+
     paakayttoliittyma *objectpaakayttoliittyma;
     TalletaRahaa *objectTalletaRahaa; // Talleta rahaa aloitus
 
-    DLLSerialPort *objectDLLSerialPort;
 
 };
 #endif // MAINWINDOW_H
