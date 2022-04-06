@@ -45,6 +45,7 @@ private slots:
 private:
     Ui::PinDialog *ui;
     QString dialogValue;
+    QString PinKoodi;
 };
 
 #endif // PINDIALOG_H

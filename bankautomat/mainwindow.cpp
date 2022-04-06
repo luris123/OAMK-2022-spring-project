@@ -7,16 +7,18 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    //objectpaakayttoliittyma = new paakayttoliittyma;
+    //objectpaakayttoliittyma -> exec();
 
-    objectTalletaRahaa = new TalletaRahaa;
-    objectTalletaRahaa->exec();
+    //objectTalletaRahaa = new TalletaRahaa;
+    //objectTalletaRahaa->exec();
 
     objectDLLPinCode = new DLLPinCode;
-    objectDLLPinCode->openDLLPinCode();
+
 
     objectDLLSerialPort = new DLLSerialPort;
-    objectDLLPinCode = new DLLPinCode;
-    objectDLLPinCode->openDLLPinCode();
+
+
 
 
 }
@@ -27,4 +29,10 @@ MainWindow::~MainWindow()
 }
 
 
+
+
+void MainWindow::on_pushButton_clicked()
+{
+     objectDLLPinCode->openDLLPinCode();
+}
 
