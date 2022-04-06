@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QtDebug>
+#include <QTimer>
 
 namespace Ui {
 class TalletaRahaa;
@@ -19,6 +20,9 @@ public:
     void setRahaValue(float a);
 
 private slots:
+
+    void timer_slot_talleta();
+
     void on_A1_clicked();
 
     void on_A2_clicked();
@@ -53,6 +57,7 @@ private:
     Ui::TalletaRahaa *ui;
     float RahaValue;
     QString TempText;
+    QTimer *objectTimerTalleta;
 };
 
 #endif // TALLETARAHAA_H

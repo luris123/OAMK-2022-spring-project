@@ -2,6 +2,8 @@
 #define NOSTARAHAA_H
 
 #include <QDialog>
+#include <QtDebug>
+#include <QTimer>
 
 namespace Ui {
 class NostaRahaa;
@@ -19,6 +21,7 @@ public:
 
 private slots:
 
+    void timer_slot_nosta();
 
     void on_A1_clicked();
 
@@ -54,6 +57,7 @@ private:
     Ui::NostaRahaa *ui;
     float NostaValue;
     QString nosto;
+    QTimer *objectTimerNosta;
 };
 
 #endif // NOSTARAHAA_H
