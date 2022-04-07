@@ -18,7 +18,7 @@ class paakayttoliittyma : public QDialog
     Q_OBJECT
 
 public:
-    explicit paakayttoliittyma(QWidget *parent = nullptr);
+     paakayttoliittyma(bool, QString, QString);
     ~paakayttoliittyma();
 
 private slots:

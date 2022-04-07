@@ -8,6 +8,7 @@
 #include "dllrestapi.h"
 
 #include "paakayttoliittyma.h"
+#include "creditordebit.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -38,6 +39,7 @@ private:
     DLLRESTAPI *objectDLLRESTAPI;
 
     paakayttoliittyma *objectpaakayttoliittyma;
+    creditOrDebit *objectCreditOrDebit;
 
     QString kortinnumero;
     QString id_Tili;

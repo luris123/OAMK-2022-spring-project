@@ -23,69 +23,69 @@
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="5" column="1">
-     <widget class="QPushButton" name="depositBtn">
-      <property name="text">
-       <string>Talleta rahaa</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0">
-     <widget class="QPushButton" name="saldoBtn">
-      <property name="text">
-       <string>Näytä saldo</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QLabel" name="ownerLabel">
-      <property name="text">
-       <string>Testi Teppo</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string>Saldo:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="0">
+    <item row="3" column="2">
      <widget class="QPushButton" name="withdrawBtn">
       <property name="text">
        <string>Nosta rahaa</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="1">
-     <widget class="QLabel" name="saldoLabel">
+    <item row="11" column="2" colspan="2">
+     <widget class="QPushButton" name="logoutBtn">
+      <property name="text">
+       <string>Kirjaudu ulos</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="2" colspan="2">
+     <widget class="QListWidget" name="listWidget"/>
+    </item>
+    <item row="0" column="3">
+     <widget class="QLabel" name="ownerLabel">
+      <property name="text">
+       <string>Testi Teppo</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="2">
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QLabel" name="saldoLabel2">
       <property name="text">
        <string>1000</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="1">
-     <widget class="QPushButton" name="actionsBtn">
-      <property name="text">
-       <string>Selaa tilitapahtumia</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0">
+    <item row="0" column="2">
      <widget class="QLabel" name="label">
       <property name="text">
        <string>Tilin omistaja: </string>
       </property>
      </widget>
     </item>
-    <item row="6" column="0" colspan="2">
-     <widget class="QListWidget" name="listWidget"/>
-    </item>
-    <item row="7" column="0" colspan="2">
-     <widget class="QPushButton" name="logoutBtn">
+    <item row="1" column="2">
+     <widget class="QLabel" name="saldoLabel1">
       <property name="text">
-       <string>Kirjaudu ulos</string>
+       <string>Saldo:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="3">
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="3">
+     <widget class="QPushButton" name="depositBtn">
+      <property name="text">
+       <string>Talleta rahaa</string>
       </property>
      </widget>
     </item>

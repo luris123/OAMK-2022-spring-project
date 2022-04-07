@@ -60,7 +60,7 @@ void MainWindow::loginSlot(QString login)
 {
     qDebug() << "login: " << login;
     if(login == "true")
-      {
+      {       
         objectDLLRESTAPI->haeAsiakkaanTiedot(kortinnumero);
       }
       else if(login == "false")
@@ -79,13 +79,21 @@ void MainWindow::asiakasTiedotSlot(QStringList tiedotLista)
     debitSaldo = tiedotLista[5];
     creditSaldo = tiedotLista[6];
 
+    QString str;
+    foreach(str, tiedotLista)
+    {
+        qDebug() << str;
+    };
+
     if(creditTilinumero == NULL)
     {
-        qDebug() << "avataan pääkäyttöliittymä";
+        objectpaakayttoliittyma = new paakayttoliittyma(true, nimi, debitSaldo);
+        objectpaakayttoliittyma->show();
     }
     else if(creditTilinumero != NULL)
     {
-        qDebug() << "avataan kysyTili käyttöliittymä";
+        objectCreditOrDebit = new creditOrDebit(nimi, debitSaldo, creditSaldo);
+        objectCreditOrDebit->show();
     }
 }
 

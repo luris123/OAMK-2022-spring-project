@@ -1,11 +1,23 @@
 #include "paakayttoliittyma.h"
 #include "ui_paakayttoliittyma.h"
 
-paakayttoliittyma::paakayttoliittyma(QWidget *parent) :
-    QDialog(parent),
+paakayttoliittyma::paakayttoliittyma(bool credit, QString nimi, QString saldo) :
     ui(new Ui::paakayttoliittyma)
 {
     ui->setupUi(this);
+
+    if(credit == true)
+    {
+        ui->ownerLabel->setText(nimi);
+        ui->saldoLabel1->setText("Credit Saldo: ");
+        ui->saldoLabel2->setText(saldo);
+    }
+    else if(credit == false)
+       {
+        ui->ownerLabel->setText(nimi);
+        ui->saldoLabel1->setText("Debit Saldo: ");
+        ui->saldoLabel2->setText(saldo);
+       }
 
     objectTalletaRahaa = new TalletaRahaa;
     objectNostaRahaa = new NostaRahaa;
