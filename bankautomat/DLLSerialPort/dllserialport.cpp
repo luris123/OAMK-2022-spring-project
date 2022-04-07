@@ -16,6 +16,5 @@ DLLSerialPort::~DLLSerialPort()
 
 void DLLSerialPort::kortinVastaanottoSlot(QString kortinNumero)
 {
-    qDebug() << "Kortintiedot saatu engineltä...lähetetään exelle";
     emit kortinNumeroSignal(kortinNumero);
 }

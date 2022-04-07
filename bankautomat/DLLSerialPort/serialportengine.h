@@ -6,7 +6,6 @@
 #include <QSerialPort>
 #include <QTimer>
 #include <QString>
-#include <QList>
 #include <QDebug>
 
 class SerialPortEngine : public QObject

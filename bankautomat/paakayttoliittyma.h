@@ -1,8 +1,13 @@
 #ifndef PAAKAYTTOLIITTYMA_H
 #define PAAKAYTTOLIITTYMA_H
 
+
+#include <QDialog>
+#include <QTimer>
+
 #include "talletarahaa.h"
 #include "nostarahaa.h"
+
 
 namespace Ui {
 class paakayttoliittyma;
@@ -17,6 +22,7 @@ public:
     ~paakayttoliittyma();
 
 private slots:
+
 
     void timer_slot();
 

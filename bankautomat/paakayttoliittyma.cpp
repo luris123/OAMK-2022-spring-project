@@ -6,6 +6,7 @@ paakayttoliittyma::paakayttoliittyma(QWidget *parent) :
     ui(new Ui::paakayttoliittyma)
 {
     ui->setupUi(this);
+
     objectTalletaRahaa = new TalletaRahaa;
     objectNostaRahaa = new NostaRahaa;
     objectTimer = new QTimer;
@@ -14,6 +15,7 @@ paakayttoliittyma::paakayttoliittyma(QWidget *parent) :
 
     connect(objectTimer, SIGNAL(timeout()),
             this, SLOT(timer_slot()));
+
 }
 
 paakayttoliittyma::~paakayttoliittyma()

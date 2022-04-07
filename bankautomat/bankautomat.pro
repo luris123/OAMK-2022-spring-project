@@ -1,5 +1,6 @@
 QT       += core gui
 QT += serialport
+QT += network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -45,3 +46,8 @@ win32: LIBS += -L$$PWD/DLLSerialPort/build/debug/ -lDLLSerialPort
 
 INCLUDEPATH += $$PWD/DLLSerialPort
 DEPENDPATH += $$PWD/DLLSerialPort
+
+win32: LIBS += -L$$PWD/DLLRESTAPI/build/debug/ -lDLLRESTAPI
+
+INCLUDEPATH += $$PWD/DLLRESTAPI
+DEPENDPATH += $$PWD/DLLRESTAPI

@@ -3,8 +3,13 @@
 
 #include <QMainWindow>
 #include "dllpincode.h"
-#include "paakayttoliittyma.h"
+
 #include "dllserialport.h"
+#include "dllrestapi.h"
+
+
+#include "paakayttoliittyma.h"
+
 
 
 QT_BEGIN_NAMESPACE
@@ -25,14 +30,20 @@ private slots:
 public slots:
     void kortinNumeroSlot(QString);
     void pinkoodiSlot(QString);
+    void loginSlot(QString);
 
 private:
     Ui::MainWindow *ui;
 
     DLLPinCode *objectDLLPinCode;
     DLLSerialPort *objectDLLSerialPort;
+    DLLRESTAPI *objectDLLRESTAPI;
 
     paakayttoliittyma *objectpaakayttoliittyma;
+
+
+    QString kortinnumero;
+    QString asiakkaanNimi;
 
 };
 #endif // MAINWINDOW_H
