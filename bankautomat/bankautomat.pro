@@ -11,6 +11,7 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    creditordebit.cpp \
     main.cpp \
     mainwindow.cpp \
     nostarahaa.cpp \
@@ -18,12 +19,14 @@ SOURCES += \
     talletarahaa.cpp
 
 HEADERS += \
+    creditordebit.h \
     mainwindow.h \
     nostarahaa.h \
     paakayttoliittyma.h \
     talletarahaa.h
 
 FORMS += \
+    creditordebit.ui \
     mainwindow.ui \
     nostarahaa.ui \
     talletarahaa.ui \
