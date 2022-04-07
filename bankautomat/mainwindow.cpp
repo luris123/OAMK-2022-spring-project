@@ -9,25 +9,31 @@ MainWindow::MainWindow(QWidget *parent)
 
     objectDLLSerialPort = new DLLSerialPort;
     objectDLLPinCode = new DLLPinCode;
-    //objectpaakayttoliittyma = new paakayttoliittyma;
-    //objectpaakayttoliittyma -> exec();
+    objectDLLRESTAPI = new DLLRESTAPI;
 
-    //objectTalletaRahaa = new TalletaRahaa;
-    //objectTalletaRahaa->exec();
-
-    //objectNostaRahaa = new NostaRahaa;
-    //objectNostaRahaa -> exec();
+    objectpaakayttoliittyma = new paakayttoliittyma;
 
     connect(objectDLLSerialPort, SIGNAL(kortinNumeroSignal(QString)),
             this, SLOT(kortinNumeroSlot(QString)));
 
     connect(objectDLLPinCode, SIGNAL(pinkoodiInterface(QString)),
            this, SLOT(pinkoodiSlot(QString)));
+
+    connect(objectDLLRESTAPI, SIGNAL(loginSignalToExe(QString)),
+            this, SLOT(loginSlot(QString)));
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete objectDLLSerialPort;
+    delete objectDLLPinCode;
+    delete objectDLLRESTAPI;
+
+    ui = nullptr;
+    objectDLLSerialPort = nullptr;
+    objectDLLPinCode = nullptr;
+    objectDLLRESTAPI = nullptr;
 }
 
 
@@ -38,31 +44,27 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::kortinNumeroSlot(QString kortinnumeroDLL)
 {
-    qDebug() << "kortintiedot saatu dllSerialPortilta...avataan pincode käyttöliittymä";
     qDebug() << "Kortinnumero exessä: " << kortinnumeroDLL;
-    //QString kortinnumero = kortinnumeroDLL??
+    kortinnumero = kortinnumeroDLL;
     objectDLLPinCode->naytaPinkoodiKayttoliittyma();
 }
 
 void MainWindow::pinkoodiSlot(QString pinkoodiDLL)
 {
-    //restiltä joko false tai true ja tarkistetaan onko credit tiliä
-    qDebug() << "pinkoodi dllPinkoodilta: " << pinkoodiDLL;
-    /*if(jos pinkoodi oikein)
-     * {
-     * //objectDLLPinCode->suljeKayttoliittyma???
-     *  if(kysytään onko credit tiliä)
-     *  {
-     *     Jos ei ole niin, avataan valise tili käyttöliittymä
-     *  }
-     * }
-     * else if(pinkoodi väärin)
-     * {
-     *      kerrotaan dllpinkoodille että pinkoodi väärin
-     *      emit pinkoodiVaarin();
-     * }
-     * */
+    qDebug() << "syötetty pinkoodi exessä: " << pinkoodiDLL;
+    objectDLLRESTAPI->login(kortinnumero, pinkoodiDLL);
 }
 
-//objectDLLRESTAPI->annaAsiakkaanTiedot();
-//objectDLLRESTAPI->annaTilinTiedot();
+void MainWindow::loginSlot(QString login)
+{
+    if(login == "true")
+      {
+        objectDLLRESTAPI->haeAsiakkaanTiedot();
+
+      }
+      else if(login == "false")
+      {
+
+      }
+}
+

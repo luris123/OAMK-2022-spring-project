@@ -95,6 +95,5 @@ void PinDialog::on_A0_clicked()
 
 void PinDialog::on_EnterBtn_clicked()
 {
-    qDebug() << "saatu pinkoodi lähetetään interfacelle";
     emit pinkoodiEngine(PinKoodi);
 }

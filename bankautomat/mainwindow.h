@@ -3,9 +3,11 @@
 
 #include <QMainWindow>
 #include "dllpincode.h"
+#include "dllserialport.h"
+#include "dllrestapi.h"
+
 #include "talletarahaa.h"
 #include "paakayttoliittyma.h"
-#include "dllserialport.h"
 #include "nostarahaa.h"
 
 
@@ -27,16 +29,19 @@ private slots:
 public slots:
     void kortinNumeroSlot(QString);
     void pinkoodiSlot(QString);
+    void loginSlot(QString);
 
 private:
     Ui::MainWindow *ui;
 
     DLLPinCode *objectDLLPinCode;
     DLLSerialPort *objectDLLSerialPort;
+    DLLRESTAPI *objectDLLRESTAPI;
 
     paakayttoliittyma *objectpaakayttoliittyma;
-    TalletaRahaa *objectTalletaRahaa; // Talleta rahaa aloitus
-    NostaRahaa *objectNostaRahaa;
+
+    QString kortinnumero;
+    QString asiakkaanNimi;
 
 
 };

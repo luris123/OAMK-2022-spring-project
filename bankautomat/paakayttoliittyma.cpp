@@ -6,6 +6,8 @@ paakayttoliittyma::paakayttoliittyma(QWidget *parent) :
     ui(new Ui::paakayttoliittyma)
 {
     ui->setupUi(this);
+
+
 }
 
 paakayttoliittyma::~paakayttoliittyma()

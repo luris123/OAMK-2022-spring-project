@@ -10,7 +10,6 @@ SerialPortEngine::SerialPortEngine()
             this, SLOT(readSerialSlot()));
 
     QString portti = "COM4";
-    qDebug() << portti << " löytyi";
 
     porttiOlio->setPortName(portti);
     qDebug() << portti << " on auki: " <<  porttiOlio->open(QIODevice::ReadOnly);
@@ -34,7 +33,6 @@ void SerialPortEngine::readSerialSlot()
     {
         kortinnumero.remove(0, 3);
         kortinnumero.remove(10, 4);
-        qDebug() << kortinnumero;
         emit  kortinnumeroSignal(kortinnumero);
         objectQTimer->stop();
     }

@@ -2,6 +2,7 @@
 #define PAAKAYTTOLIITTYMA_H
 
 #include <QDialog>
+#include <QTimer>
 
 namespace Ui {
 class paakayttoliittyma;
@@ -16,8 +17,6 @@ public:
     ~paakayttoliittyma();
 
 private slots:
-
-
 
     void on_withdrawBtn_clicked();
 

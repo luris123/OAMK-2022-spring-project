@@ -24,6 +24,5 @@ void DLLPinCode::naytaPinkoodiKayttoliittyma()
 
 void DLLPinCode::pinkoodiSlot(QString pinkoodiEnginelta)
 {
-   qDebug() << "pinkoodi saatu engineltä...lähetetään exelle";
    emit pinkoodiInterface(pinkoodiEnginelta);
 }
