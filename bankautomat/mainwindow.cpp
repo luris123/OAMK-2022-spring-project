@@ -87,7 +87,7 @@ void MainWindow::asiakasTiedotSlot(QStringList tiedotLista)
 
     if(creditTilinumero == NULL)
     {
-        objectpaakayttoliittyma = new paakayttoliittyma(true, nimi, debitSaldo);
+        objectpaakayttoliittyma = new paakayttoliittyma(false, nimi, debitSaldo);
         objectpaakayttoliittyma->show();
     }
     else if(creditTilinumero != NULL)
