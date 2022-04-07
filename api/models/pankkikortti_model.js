@@ -49,6 +49,13 @@ const pankkikortti = {
       );
     });
   },
+  getAllInfo: function (kortinnumero, callback) {
+    return db.query(
+      "SELECT tili.id_tili, asiakas.id_asiakas, nimi, debitTilinumero, creditTilinumero, debitSaldo, creditSaldo FROM pankkikortti INNER JOIN tili ON pankkikortti.id_Tili = tili.id_Tili INNER JOIN asiakas ON pankkikortti.id_Asiakas = asiakas.id_Asiakas WHERE kortinnumero = ?",
+      [kortinnumero],
+      callback
+    );
+  },
 };
 
 module.exports = pankkikortti;

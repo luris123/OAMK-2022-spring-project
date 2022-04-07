@@ -24,7 +24,6 @@ router.get('/:id?',
 });
   
 
-
 router.post('/', 
 function(request, response) {
   asiakas.add(request.body, function(err, dbResult) {

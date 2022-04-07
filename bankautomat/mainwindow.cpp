@@ -9,14 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     objectDLLSerialPort = new DLLSerialPort;
     objectDLLPinCode = new DLLPinCode;
-
     objectDLLRESTAPI = new DLLRESTAPI;
-
-
-
-    objectpaakayttoliittyma = new paakayttoliittyma;
-    objectpaakayttoliittyma -> exec();
-
 
     connect(objectDLLSerialPort, SIGNAL(kortinNumeroSignal(QString)),
             this, SLOT(kortinNumeroSlot(QString)));
@@ -26,6 +19,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(objectDLLRESTAPI, SIGNAL(loginSignalToExe(QString)),
             this, SLOT(loginSlot(QString)));
+
+    connect(objectDLLRESTAPI, SIGNAL(tiedotListToExe(QStringList)),
+            this, SLOT(asiakasTiedotSlot(QStringList)));
 }
 
 MainWindow::~MainWindow()
@@ -62,14 +58,34 @@ void MainWindow::pinkoodiSlot(QString pinkoodiDLL)
 
 void MainWindow::loginSlot(QString login)
 {
+    qDebug() << "login: " << login;
     if(login == "true")
       {
-        objectDLLRESTAPI->haeAsiakkaanTiedot();
-
+        objectDLLRESTAPI->haeAsiakkaanTiedot(kortinnumero);
       }
       else if(login == "false")
       {
 
       }
+}
+
+void MainWindow::asiakasTiedotSlot(QStringList tiedotLista)
+{
+    id_Tili = tiedotLista[0];
+    id_Asiakas= tiedotLista[1];
+    nimi = tiedotLista[2];
+    debitTilinumero = tiedotLista[3];
+    creditTilinumero = tiedotLista[4];
+    debitSaldo = tiedotLista[5];
+    creditSaldo = tiedotLista[6];
+
+    if(creditTilinumero == NULL)
+    {
+        qDebug() << "avataan pääkäyttöliittymä";
+    }
+    else if(creditTilinumero != NULL)
+    {
+        qDebug() << "avataan kysyTili käyttöliittymä";
+    }
 }
 
