@@ -8,7 +8,6 @@ asiakas::asiakas(QString url)
 
 void asiakas::haeAsiakasTiedotRestilta(QString kortinnumero)
 {
-
     QNetworkRequest request((base_url + kortinnumero));
 
     getManager = new QNetworkAccessManager(this);
