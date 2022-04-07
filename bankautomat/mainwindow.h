@@ -3,12 +3,13 @@
 
 #include <QMainWindow>
 #include "dllpincode.h"
+
 #include "dllserialport.h"
 #include "dllrestapi.h"
 
-#include "talletarahaa.h"
+
 #include "paakayttoliittyma.h"
-#include "nostarahaa.h"
+
 
 
 QT_BEGIN_NAMESPACE
@@ -40,9 +41,9 @@ private:
 
     paakayttoliittyma *objectpaakayttoliittyma;
 
+
     QString kortinnumero;
     QString asiakkaanNimi;
-
 
 };
 #endif // MAINWINDOW_H

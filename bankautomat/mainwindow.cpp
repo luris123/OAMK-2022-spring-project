@@ -9,9 +9,14 @@ MainWindow::MainWindow(QWidget *parent)
 
     objectDLLSerialPort = new DLLSerialPort;
     objectDLLPinCode = new DLLPinCode;
+
     objectDLLRESTAPI = new DLLRESTAPI;
 
+
+
     objectpaakayttoliittyma = new paakayttoliittyma;
+    objectpaakayttoliittyma -> exec();
+
 
     connect(objectDLLSerialPort, SIGNAL(kortinNumeroSignal(QString)),
             this, SLOT(kortinNumeroSlot(QString)));
