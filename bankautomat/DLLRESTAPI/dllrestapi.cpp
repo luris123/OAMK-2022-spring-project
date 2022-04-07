@@ -10,6 +10,9 @@ DLLRESTAPI::DLLRESTAPI()
     connect(objectLogin, SIGNAL(loginSignalToInterface(QString)),
             this, SLOT(interfaceLoginSlot(QString)));
 
+    connect(objectAsiakas, SIGNAL(tiedotListSignal(QStringList)),
+            this, SLOT(tiedotListFromEngine(QStringList)));
+
 }
 
 DLLRESTAPI::~DLLRESTAPI()
@@ -21,9 +24,9 @@ DLLRESTAPI::~DLLRESTAPI()
     objectLogin = nullptr;
 }
 
-void DLLRESTAPI::haeAsiakkaanTiedot()
+void DLLRESTAPI::haeAsiakkaanTiedot(QString kortinnumero)
 {
-    objectAsiakas->haeAsiakasTiedotRestilta();
+    objectAsiakas->haeAsiakasTiedotRestilta(kortinnumero);
 }
 
 void DLLRESTAPI::login(QString kortinnumero, QString pinnkoodi)
@@ -34,5 +37,10 @@ void DLLRESTAPI::login(QString kortinnumero, QString pinnkoodi)
 void DLLRESTAPI::interfaceLoginSlot(QString signalFromLogin)
 {
     emit loginSignalToExe(signalFromLogin);
+}
+
+void DLLRESTAPI::tiedotListFromEngine(QStringList tiedotList)
+{
+    emit tiedotListToExe(tiedotList);
 }
 

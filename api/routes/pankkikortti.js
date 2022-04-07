@@ -56,4 +56,18 @@ router.put("/:id", function (request, response) {
   );
 });
 
+router.get("/info/:kortinnumero", function(request, response) {
+  pankkikortti.getAllInfo(
+    request.params.kortinnumero,
+    function(err, dbResult){
+      if(err)
+      {
+        response.json(err);
+      } else {
+        response.json(dbResult);
+      }
+    }
+  );
+});
+
 module.exports = router;

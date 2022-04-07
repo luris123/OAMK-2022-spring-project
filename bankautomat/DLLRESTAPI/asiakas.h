@@ -6,6 +6,7 @@
 #include <QtNetwork>
 #include <QNetworkAccessManager>
 #include <QJsonDocument>
+#include <QStringList>
 
 class asiakas : public QObject
 {
@@ -14,15 +15,17 @@ class asiakas : public QObject
 public:
     asiakas(QString);
 
-    void haeAsiakasTiedotRestilta();
+    void haeAsiakasTiedotRestilta(QString);
 
 private:
     QString base_url;
-    QString dataAsString;
 
     QNetworkAccessManager *getManager;
     QNetworkReply *reply;
     QByteArray response_data;
+
+signals:
+    void tiedotListSignal(QStringList);
 
 private slots:
     void getAsiakasSlot(QNetworkReply *reply);

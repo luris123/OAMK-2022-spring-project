@@ -15,8 +15,7 @@ public:
     DLLRESTAPI();
     ~DLLRESTAPI();
 
-    void haeAsiakkaanTiedot();
-
+    void haeAsiakkaanTiedot(QString);
     void login(QString, QString);
 
 private:
@@ -25,12 +24,13 @@ private:
 
     QString base_url;
 
-
 signals:
     void loginSignalToExe(QString);
+    void tiedotListToExe(QStringList);
 
 private slots:
     void interfaceLoginSlot(QString);
+    void tiedotListFromEngine(QStringList);
 };
 
 #endif // DLLRESTAPI_H

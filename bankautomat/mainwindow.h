@@ -2,15 +2,12 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "dllpincode.h"
 
+#include "dllpincode.h"
 #include "dllserialport.h"
 #include "dllrestapi.h"
 
-
 #include "paakayttoliittyma.h"
-
-
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -31,6 +28,7 @@ public slots:
     void kortinNumeroSlot(QString);
     void pinkoodiSlot(QString);
     void loginSlot(QString);
+    void asiakasTiedotSlot(QStringList);
 
 private:
     Ui::MainWindow *ui;
@@ -41,9 +39,14 @@ private:
 
     paakayttoliittyma *objectpaakayttoliittyma;
 
-
     QString kortinnumero;
-    QString asiakkaanNimi;
+    QString id_Tili;
+    QString id_Asiakas;
+    QString nimi;
+    QString debitTilinumero;
+    QString creditTilinumero;
+    QString debitSaldo;
+    QString creditSaldo;
 
 };
 #endif // MAINWINDOW_H
