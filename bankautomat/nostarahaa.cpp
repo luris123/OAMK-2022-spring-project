@@ -17,19 +17,8 @@ NostaRahaa::NostaRahaa(QWidget *parent) :
 
 NostaRahaa::~NostaRahaa()
 {
-    delete objectTimerNosta;
     delete ui;
-}
-
-float NostaRahaa::getNostaRahaaValue()
-{
-    return NostaValue;
-}
-
-void NostaRahaa::setNostaValue(float a)
-{
-    NostaValue = NostaValue + a;
-    qDebug() << getNostaRahaaValue();
+    delete objectTimerNosta;
 }
 
 void NostaRahaa::timer_slot_nosta()
@@ -128,8 +117,10 @@ void NostaRahaa::on_A0_clicked()
 void NostaRahaa::on_enterBtn_clicked()
 {
     nosto = ui -> lineEdit -> text();
-    qDebug() << nosto;
-    setNostaValue(nosto.toDouble());
+    nostoValue = nosto.toFloat();
+    qDebug() << nostoValue;
+    emit nostaRahaa(nostoValue);
+
     objectTimerNosta->start(10000);
 }
 

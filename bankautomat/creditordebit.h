@@ -13,8 +13,12 @@ class creditOrDebit : public QDialog
     Q_OBJECT
 
 public:
-    creditOrDebit(QString, QString, QString);
+    explicit creditOrDebit(QWidget *parent = nullptr);
     ~creditOrDebit();
+
+
+signals:
+    void tilinValinta(QString);
 
 private slots:
     void on_debit_btn_clicked();
@@ -25,11 +29,6 @@ private slots:
 
 private:
     Ui::creditOrDebit *ui;
-    paakayttoliittyma *objectPaakayttoliittyma;
-
-    QString nimi;
-    QString debitSaldo;
-    QString creditSaldo;
 };
 
 #endif // CREDITORDEBIT_H

@@ -27,7 +27,6 @@ SerialPortEngine::~SerialPortEngine()
 
 void SerialPortEngine::readSerialSlot()
 {
-
     QString kortinnumero = porttiOlio->readAll();
     if(!kortinnumero.isEmpty())
     {

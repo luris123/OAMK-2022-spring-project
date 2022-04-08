@@ -11,6 +11,9 @@ MainWindow::MainWindow(QWidget *parent)
     objectDLLPinCode = new DLLPinCode;
     objectDLLRESTAPI = new DLLRESTAPI;
 
+   // objectNostaRahaa = new NostaRahaa;
+    objectCreditOrDebit = new creditOrDebit();
+
     connect(objectDLLSerialPort, SIGNAL(kortinNumeroSignal(QString)),
             this, SLOT(kortinNumeroSlot(QString)));
 
@@ -22,6 +25,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(objectDLLRESTAPI, SIGNAL(tiedotListToExe(QStringList)),
             this, SLOT(asiakasTiedotSlot(QStringList)));
+
+    connect(objectCreditOrDebit, SIGNAL(tilinValinta(QString)),
+            this, SLOT(tiliValittuSlot(QString)));
+
 }
 
 MainWindow::~MainWindow()
@@ -87,13 +94,53 @@ void MainWindow::asiakasTiedotSlot(QStringList tiedotLista)
 
     if(creditTilinumero == NULL)
     {
-        objectpaakayttoliittyma = new paakayttoliittyma(false, nimi, debitSaldo);
+        valinta = "debit";
+        objectpaakayttoliittyma = new paakayttoliittyma(NULL, "debit", nimi, debitSaldo, id_Tili);
+
+        connect(objectpaakayttoliittyma, SIGNAL(nostaRahaaSignal(float)),
+                this, SLOT(nostaRahaaSlot(float)));
+
         objectpaakayttoliittyma->show();
     }
     else if(creditTilinumero != NULL)
     {
-        objectCreditOrDebit = new creditOrDebit(nimi, debitSaldo, creditSaldo);
         objectCreditOrDebit->show();
+    }
+}
+
+void MainWindow::tiliValittuSlot(QString tilinValinta)
+{
+    if(tilinValinta == "debit")
+    {
+        valinta = tilinValinta;
+        objectpaakayttoliittyma = new paakayttoliittyma(NULL, "debit", nimi, debitSaldo, id_Tili);
+
+        connect(objectpaakayttoliittyma, SIGNAL(nostaRahaaSignal(float)),
+                this, SLOT(nostaRahaaSlot(float)));
+
+        objectpaakayttoliittyma->show();
+    }
+    else if(tilinValinta == "credit")
+    {
+        valinta = tilinValinta;
+        objectpaakayttoliittyma = new paakayttoliittyma(NULL, "credit", nimi, creditSaldo, id_Tili);
+
+        connect(objectpaakayttoliittyma, SIGNAL(nostaRahaaSignal(float)),
+                this, SLOT(nostaRahaaSlot(float)));
+
+        objectpaakayttoliittyma->show();
+    }
+}
+
+void MainWindow::nostaRahaaSlot(float nostoSumma)
+{
+    if(valinta == "debit")
+    {
+        qDebug() << "Nostetaan debit tililtä: " << nostoSumma;
+    }
+    else if(valinta == "credit")
+    {
+       qDebug() << "Nostetaan credit tililtä: " << nostoSumma;
     }
 }
 

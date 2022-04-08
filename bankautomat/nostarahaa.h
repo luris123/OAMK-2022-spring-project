@@ -16,8 +16,9 @@ class NostaRahaa : public QDialog
 public:
     explicit NostaRahaa(QWidget *parent = nullptr);
     ~NostaRahaa();
-    float getNostaRahaaValue();
-    void setNostaValue(float a);
+
+signals:
+    void nostaRahaa(float);
 
 private slots:
 
@@ -55,7 +56,8 @@ private slots:
 
 private:
     Ui::NostaRahaa *ui;
-    float NostaValue;
+
+    float nostoValue;
     QString nosto;
     QTimer *objectTimerNosta;
 };

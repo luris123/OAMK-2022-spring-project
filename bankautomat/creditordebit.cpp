@@ -1,37 +1,33 @@
 #include "creditordebit.h"
 #include "ui_creditordebit.h"
 
-creditOrDebit::creditOrDebit(QString paramNimi, QString paramDebitSaldo, QString paramCreditSaldo) :
-    ui(new Ui::creditOrDebit)
+creditOrDebit::creditOrDebit(QWidget *parent) :
+  QDialog(parent),
+  ui(new Ui::creditOrDebit)
 {
     ui->setupUi(this);
-
-    nimi = paramNimi;
-    debitSaldo = paramDebitSaldo;
-    creditSaldo = paramCreditSaldo;
 }
 
 creditOrDebit::~creditOrDebit()
 {
     delete ui;
+    ui = nullptr;
 }
 
 void creditOrDebit::on_debit_btn_clicked()
 {
-    objectPaakayttoliittyma = new paakayttoliittyma(false, nimi, debitSaldo);
-    objectPaakayttoliittyma->show();
+    emit tilinValinta("debit");
 }
 
 
 void creditOrDebit::on_credit_btn_clicked()
 {
-    objectPaakayttoliittyma = new paakayttoliittyma(true, nimi, creditSaldo);
-    objectPaakayttoliittyma->show();
+    emit tilinValinta("credit");
 }
 
 
 void creditOrDebit::on_kirjauduUlos_btn_clicked()
 {
-
+    this->close();
 }
 
