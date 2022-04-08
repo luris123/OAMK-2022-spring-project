@@ -125,24 +125,40 @@ void NostaRahaa::on_enterBtn_clicked()
 }
 
 
-void NostaRahaa::on_backBtn_clicked()
+void NostaRahaa::on_closeBtn_clicked()
 {
-    nosto = nosto.remove(nosto.length()-1, nosto.length());
-    ui -> lineEdit ->setText(nosto);
-    objectTimerNosta->start(10000);
+     this->close();
 }
 
 
-void NostaRahaa::on_dotBtn_clicked()
+void NostaRahaa::on_twentyBtn_clicked()
 {
-    ui -> lineEdit ->setText(nosto+".");
+    ui -> lineEdit ->setText("20");
     nosto = ui -> lineEdit -> text();
     objectTimerNosta->start(10000);
 }
 
 
-void NostaRahaa::on_closeBtn_clicked()
+void NostaRahaa::on_fortyBtn_clicked()
 {
-     this->close();
+    ui -> lineEdit ->setText("40");
+    nosto = ui -> lineEdit -> text();
+    objectTimerNosta->start(10000);
+}
+
+
+void NostaRahaa::on_sixtyBtn_clicked()
+{
+    ui -> lineEdit ->setText("60");
+    nosto = ui -> lineEdit -> text();
+    objectTimerNosta->start(10000);
+}
+
+
+void NostaRahaa::on_hundredBtn_clicked()
+{
+    ui -> lineEdit ->setText("100");
+    nosto = ui -> lineEdit -> text();
+    objectTimerNosta->start(10000);
 }
 

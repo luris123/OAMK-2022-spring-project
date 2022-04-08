@@ -48,11 +48,15 @@ private slots:
 
     void on_enterBtn_clicked();
 
-    void on_backBtn_clicked();
-
-    void on_dotBtn_clicked();
-
     void on_closeBtn_clicked();
+
+    void on_twentyBtn_clicked();
+
+    void on_fortyBtn_clicked();
+
+    void on_sixtyBtn_clicked();
+
+    void on_hundredBtn_clicked();
 
 private:
     Ui::NostaRahaa *ui;
