@@ -7,6 +7,7 @@
 
 #include "asiakas.h"
 #include "login.h"
+#include "procedures.h"
 
 class DLLRESTAPI_EXPORT DLLRESTAPI : public QObject
 {
@@ -15,12 +16,14 @@ public:
     DLLRESTAPI();
     ~DLLRESTAPI();
 
-    void haeAsiakkaanTiedot(QString);
     void login(QString, QString);
+    void haeAsiakkaanTiedot(QString);
+    void suoritaDebitNosto(QString, QString, QString, QString, QString);
 
 private:
     asiakas *objectAsiakas;
     class login *objectLogin;
+    procedures *objectProcedures;
 
     QString base_url;
 

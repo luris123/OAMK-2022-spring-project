@@ -136,6 +136,9 @@ void MainWindow::nostaRahaaSlot(float nostoSumma)
 {
     if(valinta == "debit")
     {
+        QString strNostoSumma = QString::number(nostoSumma);
+        objectDLLRESTAPI->suoritaDebitNosto(id_Tili, debitTilinumero, kortinnumero, debitSaldo, strNostoSumma);
+
         qDebug() << "Nostetaan debit tililtä: " << nostoSumma;
     }
     else if(valinta == "credit")

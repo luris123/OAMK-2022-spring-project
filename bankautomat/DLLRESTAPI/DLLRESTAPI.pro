@@ -13,13 +13,15 @@ CONFIG += c++11
 SOURCES += \
     asiakas.cpp \
     dllrestapi.cpp \
-    login.cpp
+    login.cpp \
+    procedures.cpp
 
 HEADERS += \
     DLLRESTAPI_global.h \
     asiakas.h \
     dllrestapi.h \
-    login.h
+    login.h \
+    procedures.h
 
 # Default rules for deployment.
 unix {
