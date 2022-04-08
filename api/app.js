@@ -11,6 +11,7 @@ var pankkikorttiRouter = require("./routes/pankkikortti");
 var tiliRouter = require("./routes/tili");
 var tilitapahtumatRouter = require("./routes/tilitapahtumat");
 var loginRouter = require("./routes/login");
+var procedureRouter = require("./routes/procedures");
 
 var app = express();
 
@@ -28,5 +29,6 @@ app.use("/pankkikortti", pankkikorttiRouter);
 app.use("/tili", tiliRouter);
 app.use("/tilitapahtumat", tilitapahtumatRouter);
 app.use("/login", loginRouter);
+app.use("/procedures", procedureRouter);
 
 module.exports = app;

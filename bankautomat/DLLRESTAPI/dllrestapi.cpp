@@ -6,6 +6,7 @@ DLLRESTAPI::DLLRESTAPI()
 
     objectAsiakas = new asiakas(base_url);
     objectLogin = new class login(base_url);
+    objectProcedures = new procedures(base_url);
 
     connect(objectLogin, SIGNAL(loginSignalToInterface(QString)),
             this, SLOT(interfaceLoginSlot(QString)));
@@ -27,6 +28,11 @@ DLLRESTAPI::~DLLRESTAPI()
 void DLLRESTAPI::haeAsiakkaanTiedot(QString kortinnumero)
 {
     objectAsiakas->haeAsiakasTiedotRestilta(kortinnumero);
+}
+
+void DLLRESTAPI::suoritaDebitNosto(QString id, QString tilinumero, QString kortinnumero, QString debitSaldo, QString nostoSumma)
+{
+    objectProcedures->suoritaDebitNosto(id, tilinumero, kortinnumero, debitSaldo, nostoSumma);
 }
 
 void DLLRESTAPI::login(QString kortinnumero, QString pinnkoodi)
