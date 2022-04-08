@@ -26,9 +26,14 @@
     <item row="2" column="0">
      <layout class="QGridLayout" name="gridLayout_4">
       <item row="3" column="0">
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="alas_btn">
+        <property name="font">
+         <font>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
         <property name="text">
-         <string>PushButton</string>
+         <string>v</string>
         </property>
        </widget>
       </item>
@@ -40,9 +45,14 @@
        </widget>
       </item>
       <item row="2" column="0">
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="ylos_btn">
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
         <property name="text">
-         <string>PushButton</string>
+         <string>^</string>
         </property>
        </widget>
       </item>

@@ -7,6 +7,7 @@ PinDialog::PinDialog(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->lineEdit->setMaxLength(4);
+
 }
 
 PinDialog::~PinDialog()

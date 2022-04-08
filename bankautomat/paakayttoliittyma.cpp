@@ -1,18 +1,21 @@
 #include "paakayttoliittyma.h"
 #include "ui_paakayttoliittyma.h"
 
-paakayttoliittyma::paakayttoliittyma(bool credit, QString nimi, QString saldo) :
+paakayttoliittyma::paakayttoliittyma(QWidget *parent, QString tilinValinta, QString nimi, QString saldo, QString paramId_tili) :
+    QDialog(parent),
     ui(new Ui::paakayttoliittyma)
 {
     ui->setupUi(this);
 
-    if(credit == true)
+    id_tili = paramId_tili;
+
+    if(tilinValinta == "credit")
     {
         ui->ownerLabel->setText(nimi);
         ui->saldoLabel1->setText("Credit Saldo: ");
         ui->saldoLabel2->setText(saldo);
     }
-    else if(credit == false)
+    else if(tilinValinta == "debit")
        {
         ui->ownerLabel->setText(nimi);
         ui->saldoLabel1->setText("Debit Saldo: ");
@@ -28,6 +31,9 @@ paakayttoliittyma::paakayttoliittyma(bool credit, QString nimi, QString saldo) :
     connect(objectTimer, SIGNAL(timeout()),
             this, SLOT(timer_slot()));
 
+    connect(objectNostaRahaa, SIGNAL(nostaRahaa(float)),
+            this, SLOT(nostaRahaaSlot(float)));
+
 }
 
 paakayttoliittyma::~paakayttoliittyma()
@@ -36,6 +42,11 @@ paakayttoliittyma::~paakayttoliittyma()
     delete objectTalletaRahaa;
     delete objectNostaRahaa;
     delete objectTimer;
+}
+
+void paakayttoliittyma::nostaRahaaSlot(float nostoValue)
+{
+    emit nostaRahaaSignal(nostoValue);
 }
 
 void paakayttoliittyma::timer_slot()
@@ -54,7 +65,7 @@ void paakayttoliittyma::on_depositBtn_clicked()
 void paakayttoliittyma::on_withdrawBtn_clicked()
 {
     objectTimer->stop();
-    objectNostaRahaa -> exec();
+    objectNostaRahaa -> show();
     objectTimer->start(30000);
 }
 
@@ -63,4 +74,15 @@ void paakayttoliittyma::on_logoutBtn_clicked()
     this->close();
 }
 
+
+void paakayttoliittyma::on_ylos_btn_clicked()
+{
+
+}
+
+
+void paakayttoliittyma::on_alas_btn_clicked()
+{
+
+}
 
