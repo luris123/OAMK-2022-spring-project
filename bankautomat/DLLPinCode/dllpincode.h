@@ -15,6 +15,7 @@ public:
     ~DLLPinCode();
 
     void naytaPinkoodiKayttoliittyma();
+    void pinkoodiVaarin();
 
 
 private:

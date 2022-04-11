@@ -22,11 +22,11 @@ public:
     ~paakayttoliittyma();
 
 signals:
-    void nostaRahaaSignal(float);
+    void nostaRahaaSignal(QString);
 
 private slots:
 
-    void nostaRahaaSlot(float);
+    void nostaRahaaSlot(QString);
 
     void timer_slot();
 

@@ -117,9 +117,8 @@ void NostaRahaa::on_A0_clicked()
 void NostaRahaa::on_enterBtn_clicked()
 {
     nosto = ui -> lineEdit -> text();
-    nostoValue = nosto.toFloat();
-    qDebug() << nostoValue;
-    emit nostaRahaa(nostoValue);
+    qDebug() << nosto;
+    emit nostaRahaa(nosto);
 
     objectTimerNosta->start(10000);
 }

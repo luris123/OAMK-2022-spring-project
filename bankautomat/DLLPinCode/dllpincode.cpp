@@ -20,6 +20,12 @@ void DLLPinCode::naytaPinkoodiKayttoliittyma()
     objectPinDialog->show();
 }
 
+void DLLPinCode::pinkoodiVaarin()
+{
+    qDebug() << "taalla";
+    objectPinDialog->pinkoodiVaarin();
+}
+
 
 
 void DLLPinCode::pinkoodiSlot(QString pinkoodiEnginelta)

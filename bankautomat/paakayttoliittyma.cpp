@@ -31,8 +31,8 @@ paakayttoliittyma::paakayttoliittyma(QWidget *parent, QString tilinValinta, QStr
     connect(objectTimer, SIGNAL(timeout()),
             this, SLOT(timer_slot()));
 
-    connect(objectNostaRahaa, SIGNAL(nostaRahaa(float)),
-            this, SLOT(nostaRahaaSlot(float)));
+    connect(objectNostaRahaa, SIGNAL(nostaRahaa(QString)),
+            this, SLOT(nostaRahaaSlot(QString)));
 
 }
 
@@ -44,9 +44,9 @@ paakayttoliittyma::~paakayttoliittyma()
     delete objectTimer;
 }
 
-void paakayttoliittyma::nostaRahaaSlot(float nostoValue)
+void paakayttoliittyma::nostaRahaaSlot(QString nosto)
 {
-    emit nostaRahaaSignal(nostoValue);
+    emit nostaRahaaSignal(nosto);
 }
 
 void paakayttoliittyma::timer_slot()
