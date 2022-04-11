@@ -15,4 +15,17 @@ router.get('/:id/:tilinumero/:kortinnumero/:debitSaldo/:nostoSumma',
   } 
 });
 
+router.get('/:id/:tilinumero/:kortinnumero/:creditSaldo/:luottoraja:/nostoSumma',
+ function(request, response) {
+  if (request.params.id) {
+    procedures.nostaRahaaCredit(request.params.id, request.params.tilinumero, request.params.kortinnumero, request.params.creditSaldo,request.params.luottoraja, request.params.nostoSumma,  function(err) {
+      if (err) {
+        response.send(err);
+      } else {
+        response.send("Credit nosto suoritettu");
+      }
+    });
+  } 
+});
+
 module.exports = router;

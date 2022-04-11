@@ -9,7 +9,7 @@ SerialPortEngine::SerialPortEngine()
     QObject::connect(objectQTimer, SIGNAL(timeout()),
             this, SLOT(readSerialSlot()));
 
-    QString portti = "COM4";
+    QString portti = "COM3";
 
     porttiOlio->setPortName(portti);
     qDebug() << portti << " on auki: " <<  porttiOlio->open(QIODevice::ReadOnly);
