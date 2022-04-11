@@ -60,7 +60,7 @@ void MainWindow::kortinNumeroSlot(QString kortinnumeroDLL)
 void MainWindow::pinkoodiSlot(QString pinkoodiDLL)
 {
     qDebug() << "syötetty pinkoodi exessä: " << pinkoodiDLL;
-    objectDLLRESTAPI->login(kortinnumero, pinkoodiDLL);
+    objectDLLRESTAPI->login("06000D8998", pinkoodiDLL);
 }
 
 void MainWindow::loginSlot(QString login)
@@ -68,11 +68,11 @@ void MainWindow::loginSlot(QString login)
     qDebug() << "login: " << login;
     if(login == "true")
       {       
-        objectDLLRESTAPI->haeAsiakkaanTiedot(kortinnumero);
+        objectDLLRESTAPI->haeAsiakkaanTiedot("06000D8998");
       }
       else if(login == "false")
       {
-
+        objectDLLPinCode->pinkoodiVaarin();
       }
 }
 
@@ -98,8 +98,8 @@ void MainWindow::asiakasTiedotSlot(QStringList tiedotLista)
         valinta = "debit";
         objectpaakayttoliittyma = new paakayttoliittyma(NULL, "debit", nimi, debitSaldo, id_Tili);
 
-        connect(objectpaakayttoliittyma, SIGNAL(nostaRahaaSignal(float)),
-                this, SLOT(nostaRahaaSlot(float)));
+        connect(objectpaakayttoliittyma, SIGNAL(nostaRahaaSignal(QString)),
+                this, SLOT(nostaRahaaSlot(QString)));
 
         objectpaakayttoliittyma->show();
     }
@@ -116,8 +116,8 @@ void MainWindow::tiliValittuSlot(QString tilinValinta)
         valinta = tilinValinta;
         objectpaakayttoliittyma = new paakayttoliittyma(NULL, "debit", nimi, debitSaldo, id_Tili);
 
-        connect(objectpaakayttoliittyma, SIGNAL(nostaRahaaSignal(float)),
-                this, SLOT(nostaRahaaSlot(float)));
+        connect(objectpaakayttoliittyma, SIGNAL(nostaRahaaSignal(QString)),
+                this, SLOT(nostaRahaaSlot(QString)));
 
         objectpaakayttoliittyma->show();
     }
@@ -126,19 +126,19 @@ void MainWindow::tiliValittuSlot(QString tilinValinta)
         valinta = tilinValinta;
         objectpaakayttoliittyma = new paakayttoliittyma(NULL, "credit", nimi, creditSaldo, id_Tili);
 
-        connect(objectpaakayttoliittyma, SIGNAL(nostaRahaaSignal(float)),
-                this, SLOT(nostaRahaaSlot(float)));
+        connect(objectpaakayttoliittyma, SIGNAL(nostaRahaaSignal(QString)),
+                this, SLOT(nostaRahaaSlot(QString)));
 
         objectpaakayttoliittyma->show();
     }
 }
 
-void MainWindow::nostaRahaaSlot(float nostoSumma)
+void MainWindow::nostaRahaaSlot(QString nostoSumma)
 {
     if(valinta == "debit")
     {
-        QString strNostoSumma = QString::number(nostoSumma);
-        objectDLLRESTAPI->suoritaDebitNosto(id_Tili, debitTilinumero, kortinnumero, debitSaldo, strNostoSumma);
+        objectDLLRESTAPI->suoritaDebitNosto(id_Tili, debitTilinumero, kortinnumero, debitSaldo, nostoSumma);
+
 
         qDebug() << "Nostetaan debit tililtä: " << nostoSumma;
     }

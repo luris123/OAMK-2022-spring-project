@@ -16,6 +16,20 @@ PinDialog::~PinDialog()
     ui = nullptr;
 }
 
+void PinDialog::pinkoodiVaarin()
+{
+    yritys = yritys - 1;
+    ui->vaarin_label->setText("Pinkoodi väärin. " + QString::number(yritys) + " yritys(tä) jäljellä");
+    if (yritys == 0)
+    {
+        this->close();
+        yritys = 3;
+        ui -> vaarin_label -> clear();
+        ui -> lineEdit -> clear();
+        PinKoodi.clear();
+    }
+}
+
 
 void PinDialog::on_A1_clicked()
 {

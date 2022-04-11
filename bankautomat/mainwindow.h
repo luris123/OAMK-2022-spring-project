@@ -32,7 +32,7 @@ public slots:
     void loginSlot(QString);
     void asiakasTiedotSlot(QStringList);
     void tiliValittuSlot(QString);
-    void nostaRahaaSlot(float);
+    void nostaRahaaSlot(QString);
 
 private:
     Ui::MainWindow *ui;

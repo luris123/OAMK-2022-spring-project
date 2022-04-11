@@ -18,7 +18,7 @@ public:
     ~NostaRahaa();
 
 signals:
-    void nostaRahaa(float);
+    void nostaRahaa(QString);
 
 private slots:
 
@@ -61,7 +61,6 @@ private slots:
 private:
     Ui::NostaRahaa *ui;
 
-    float nostoValue;
     QString nosto;
     QTimer *objectTimerNosta;
 };

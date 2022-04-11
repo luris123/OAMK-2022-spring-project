@@ -15,6 +15,8 @@ public:
     explicit PinDialog(QWidget *parent = nullptr);
     ~PinDialog();
 
+    void pinkoodiVaarin();
+
 private slots:
     void on_A1_clicked();
 
@@ -43,6 +45,7 @@ private slots:
 private:
     Ui::PinDialog *ui;
     QString PinKoodi;
+    int yritys = 3;
 
 signals:
     void pinkoodiEngine(QString);
