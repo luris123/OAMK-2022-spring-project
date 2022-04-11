@@ -54,6 +54,7 @@ private:
     QString debitSaldo;
     QString creditSaldo;
     QString valinta;
+    QString luottoraja;
 
 };
 #endif // MAINWINDOW_H

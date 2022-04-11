@@ -17,10 +17,13 @@ public:
 
     void suoritaDebitNosto(QString, QString, QString, QString, QString);
 
+    void suoritaCreditNosto(QString, QString, QString, QString, QString, QString);
 private:
     QString base_url;
 
-    QNetworkAccessManager *getManager;
+    QNetworkAccessManager *getDebitManager;
+    QNetworkAccessManager *getCreditManager;
+
     QNetworkReply *reply;
     QByteArray response_data;
 
@@ -29,6 +32,7 @@ signals:
 
 private slots:
     void getDebitNostoSlot(QNetworkReply *reply);
+    void getCreditNostoSlot(QNetworkReply *reply);
 };
 
 #endif // PROCEDURES_H

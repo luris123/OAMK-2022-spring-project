@@ -85,6 +85,7 @@ void MainWindow::asiakasTiedotSlot(QStringList tiedotLista)
     creditTilinumero = tiedotLista[4];
     debitSaldo = tiedotLista[5];
     creditSaldo = tiedotLista[6];
+    luottoraja = tiedotLista[7];
 
     QString str;
     foreach(str, tiedotLista)
@@ -143,6 +144,9 @@ void MainWindow::nostaRahaaSlot(float nostoSumma)
     }
     else if(valinta == "credit")
     {
+       QString strNostoSumma = QString::number(nostoSumma);
+       objectDLLRESTAPI->suoritaCreditNosto(id_Tili, creditTilinumero, kortinnumero, creditSaldo, strNostoSumma, luottoraja);
+
        qDebug() << "Nostetaan credit tililtä: " << nostoSumma;
     }
 }
