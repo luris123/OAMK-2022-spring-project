@@ -53,14 +53,14 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::kortinNumeroSlot(QString kortinnumeroDLL)
 {
     qDebug() << "Kortinnumero exessä: " << kortinnumeroDLL;
-    kortinnumero = "06000D8998";
+    kortinnumero = kortinnumeroDLL;
     objectDLLPinCode->naytaPinkoodiKayttoliittyma();
 }
 
 void MainWindow::pinkoodiSlot(QString pinkoodiDLL)
 {
     qDebug() << "syötetty pinkoodi exessä: " << pinkoodiDLL;
-    objectDLLRESTAPI->login("06000D8998", pinkoodiDLL);
+    objectDLLRESTAPI->login(kortinnumero, pinkoodiDLL);
 }
 
 void MainWindow::loginSlot(QString login)
@@ -68,7 +68,7 @@ void MainWindow::loginSlot(QString login)
     qDebug() << "login: " << login;
     if(login == "true")
       {       
-        objectDLLRESTAPI->haeAsiakkaanTiedot("06000D8998");
+        objectDLLRESTAPI->haeAsiakkaanTiedot(kortinnumero);
       }
       else if(login == "false")
       {
@@ -85,6 +85,7 @@ void MainWindow::asiakasTiedotSlot(QStringList tiedotLista)
     creditTilinumero = tiedotLista[4];
     debitSaldo = tiedotLista[5];
     creditSaldo = tiedotLista[6];
+    luottoraja = tiedotLista[7];
 
     QString str;
     foreach(str, tiedotLista)
@@ -137,12 +138,15 @@ void MainWindow::nostaRahaaSlot(float nostoSumma)
     if(valinta == "debit")
     {
         QString strNostoSumma = QString::number(nostoSumma);
-        objectDLLRESTAPI->suoritaDebitNosto(id_Tili, debitTilinumero, "06000D8998", debitSaldo, strNostoSumma);
+        objectDLLRESTAPI->suoritaDebitNosto(id_Tili, debitTilinumero, kortinnumero, debitSaldo, strNostoSumma);
 
         qDebug() << "Nostetaan debit tililtä: " << nostoSumma;
     }
     else if(valinta == "credit")
     {
+       QString strNostoSumma = QString::number(nostoSumma);
+       objectDLLRESTAPI->suoritaCreditNosto(id_Tili, creditTilinumero, kortinnumero, creditSaldo, strNostoSumma, luottoraja);
+
        qDebug() << "Nostetaan credit tililtä: " << nostoSumma;
     }
 }

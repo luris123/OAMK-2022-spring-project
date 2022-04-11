@@ -38,6 +38,7 @@ void asiakas::getAsiakasSlot(QNetworkReply *reply)
        tiedotList.insert(4, json_obj["creditTilinumero"].toString());
        tiedotList.insert(5, QString::number(json_obj["debitSaldo"].toDouble()));
        tiedotList.insert(6, QString::number(json_obj["creditSaldo"].toDouble()));
+       tiedotList.insert(7, QString::number(json_obj["luottoraja"].toInt()));
     }
     emit tiedotListSignal(tiedotList);
 }

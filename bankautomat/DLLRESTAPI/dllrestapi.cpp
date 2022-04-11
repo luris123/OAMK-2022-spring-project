@@ -35,6 +35,11 @@ void DLLRESTAPI::suoritaDebitNosto(QString id, QString tilinumero, QString korti
     objectProcedures->suoritaDebitNosto(id, tilinumero, kortinnumero, debitSaldo, nostoSumma);
 }
 
+void DLLRESTAPI::suoritaCreditNosto(QString id, QString tilinumero, QString kortinnumero, QString creditSaldo, QString nostoSumma, QString luottoraja)
+{
+    objectProcedures->suoritaCreditNosto(id, tilinumero, kortinnumero, creditSaldo, nostoSumma, luottoraja);
+}
+
 void DLLRESTAPI::login(QString kortinnumero, QString pinnkoodi)
 {
     objectLogin->yritaKirjautua(kortinnumero, pinnkoodi);
