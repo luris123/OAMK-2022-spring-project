@@ -25,6 +25,7 @@ public:
 
 signals:
     void nostaRahaaValittu();
+    void talletaRahaaValittu();
     void kirjauduUlosSignal();
 
 private slots:

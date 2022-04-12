@@ -16,8 +16,9 @@ class TalletaRahaa : public QDialog
 public:
     explicit TalletaRahaa(QWidget *parent = nullptr);
     ~TalletaRahaa();
-    float getTalletaRahaaValue();
-    void setRahaValue(float a);
+
+signals:
+   void talletaRahaa(QString);
 
 private slots:
 
@@ -55,8 +56,7 @@ private slots:
 
 private:
     Ui::TalletaRahaa *ui;
-    float RahaValue;
-    QString TempText;
+    QString talletusSumma;
     QTimer *objectTimerTalleta;
 };
 

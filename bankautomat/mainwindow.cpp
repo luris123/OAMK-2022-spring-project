@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     objectpaakayttoliittyma = new paakayttoliittyma;
     objectCreditOrDebit = new creditOrDebit;
     objectNostaRahaa = new NostaRahaa;
+    objectTalletaRahaa = new TalletaRahaa;
 
     connect(objectDLLSerialPort, SIGNAL(kortinNumeroSignal(QString)),
             this, SLOT(kortinNumeroSlot(QString)));
@@ -35,6 +36,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(objectNostaRahaa, SIGNAL(nostaRahaa(QString)),
             this, SLOT(nostaRahaaSlot(QString)));
+
+    connect(objectTalletaRahaa, SIGNAL(talletaRahaaValittu()),
+            this, SLOT(talletaRahaaValittuSlot()));
 
     connect(objectCreditOrDebit, SIGNAL(kirjauduUlosSignal()),
             this, SLOT(kirjauduUlosSlot()));
@@ -139,7 +143,6 @@ void MainWindow::tiliValittuSlot(QString tilinValinta)
 
 void MainWindow::nostaRahaaValittuSlot()
 {
-    qDebug() << "nostaRahaaValittu Slotissa";
     objectNostaRahaa->show();
 }
 
@@ -163,6 +166,11 @@ void MainWindow::nostaRahaaSlot(QString nostoSumma)
        objectpaakayttoliittyma->asetaTiedot(valinta, nimi, creditSaldo);
 
     }
+}
+
+void MainWindow::talletaRahaaValittuSlot()
+{
+    objectTalletaRahaa->show();
 }
 
 void MainWindow::kirjauduUlosSlot()
