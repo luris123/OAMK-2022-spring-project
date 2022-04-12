@@ -10,6 +10,7 @@
 #include "paakayttoliittyma.h"
 #include "creditordebit.h"
 #include "nostarahaa.h"
+#include "talletarahaa.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -34,6 +35,7 @@ public slots:
     void tiliValittuSlot(QString);
     void nostaRahaaValittuSlot();
     void nostaRahaaSlot(QString);
+    void talletaRahaaValittuSlot();
     void kirjauduUlosSlot();
 
 private:
@@ -46,6 +48,7 @@ private:
     paakayttoliittyma *objectpaakayttoliittyma;
     creditOrDebit *objectCreditOrDebit;
     NostaRahaa *objectNostaRahaa;
+    TalletaRahaa *objectTalletaRahaa;
 
     QString kortinnumero;
     QString id_Tili;
