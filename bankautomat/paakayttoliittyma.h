@@ -26,6 +26,7 @@ public:
 signals:
     void nostaRahaaValittu();
     void talletaRahaaValittu();
+    void tilitapahtumaValinta(QString);
     void kirjauduUlosSignal();
 
 private slots:
@@ -48,6 +49,8 @@ private:
     TalletaRahaa *objectTalletaRahaa; // Talleta rahaa aloitus
     NostaRahaa *objectNostaRahaa;
     QTimer *objectTimer;
+
+    QString valinta;
 };
 
 #endif // PAAKAYTTOLIITTYMA_H

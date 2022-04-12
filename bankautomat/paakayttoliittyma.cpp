@@ -67,12 +67,14 @@ void paakayttoliittyma::on_logoutBtn_clicked()
 
 void paakayttoliittyma::on_ylos_btn_clicked()
 {
-
+    valinta = "ylos";
+    emit tilitapahtumaValinta(valinta);
 }
 
 
 void paakayttoliittyma::on_alas_btn_clicked()
 {
-
+    valinta = "alas";
+    emit tilitapahtumaValinta(valinta);
 }
 

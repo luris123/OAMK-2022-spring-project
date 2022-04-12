@@ -37,6 +37,7 @@ public slots:
     void nostaRahaaSlot(QString);
     void talletaRahaaValittuSlot();
     void talletaRahaaSlot(QString);
+    void tilitapahtumaValintaSlot(QString);
     void kirjauduUlosSlot();
 
 private:
@@ -61,6 +62,9 @@ private:
     QString creditSaldo;
     QString valinta;
     QString luottoraja;
+
+    int tilitapahtumaHakuMaara;
+    int kiinteaTilitapahtumaHakuMaara;
 
 };
 #endif // MAINWINDOW_H
