@@ -22,6 +22,18 @@ router.get("/:id?", function (request, response) {
   }
 });
 
+router.get("/omistaja/:id_tili/:maara/:hakumaara", function (request, response) {
+  if (request.params.id_tili) {
+    tilitapahtumat.getByidTili(request.params.id_tili, request.params.maara, request.params.hakumaara, function (err, dbResult) {
+      if (err) {
+        response.json(err);
+      } else {
+        response.json(dbResult);
+      }
+    });
+  }
+})
+
 router.post("/", function (request, response) {
   tilitapahtumat.add(request.body, function (err, dbResult) {
     if (err) {
