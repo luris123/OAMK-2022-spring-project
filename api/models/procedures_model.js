@@ -9,6 +9,11 @@ const procedures = {
     nostaRahaaCredit: function(id, tilinumero, kortinnumero, creditSaldo, nostoSumma, luottoraja, callback) {
       return db.query('call nostaRahaaCredit(?,?,?,?,?,?)',
        [id, tilinumero, kortinnumero, creditSaldo, nostoSumma, luottoraja], callback);
+    },
+
+    talletaRahaa: function(id, tilityyppi, tilinumero, kortinnumero, talletussumma, callback) {
+      return db.query('call talletaRahaa(?,?,?,?,?)',
+       [id, tilityyppi, tilinumero, kortinnumero, talletussumma], callback);
     }
 
 

@@ -146,7 +146,6 @@ void MainWindow::tiliValittuSlot(QString tilinValinta)
 
 void MainWindow::nostaRahaaValittuSlot()
 {
-    qDebug() << "nostaRahaaValittu Slotissa";
     objectNostaRahaa->show();
 }
 
@@ -176,6 +175,7 @@ void MainWindow::talletaRahaaValittuSlot()
 {
     objectTalletaRahaa->show();
 }
+
 
 void MainWindow::talletaRahaaSlot(QString talletusSumma)
 {

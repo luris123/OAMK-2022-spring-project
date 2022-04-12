@@ -49,7 +49,7 @@ void paakayttoliittyma::timer_slot()
 
 void paakayttoliittyma::on_depositBtn_clicked()
 {
-   qDebug() << "talletus Valittu";
+
    emit talletaRahaaValittu();
 }
 
