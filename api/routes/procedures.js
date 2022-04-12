@@ -2,7 +2,21 @@ const express = require('express');
 const router = express.Router();
 const procedures = require('../models/procedures_model');
 
-router.get('/:id/:tilinumero/:kortinnumero/:debitSaldo/:nostoSumma',
+router.get('/talletus/:id/:tilityyppi/:tilinumero/:kortinnumero/:talletussumma',
+ function(request, response) {
+  if (request.params.id) {
+    procedures.talletaRahaa(request.params.id, request.params.tilityyppi, request.params.tilinumero, request.params.kortinnumero, request.params.talletussumma, function(err) {
+      if (err) {
+        response.send(err);
+      } else {
+        response.send("talletus suoritettu");
+      }
+      
+    });
+  } 
+});
+
+router.get('/nosto/:id/:tilinumero/:kortinnumero/:debitSaldo/:nostoSumma',
  function(request, response, next) {
   if (request.params.id) {
     procedures.nostaRahaaDebit(request.params.id, request.params.tilinumero, request.params.kortinnumero, request.params.debitSaldo, request.params.nostoSumma,  function(err) {
@@ -18,7 +32,7 @@ router.get('/:id/:tilinumero/:kortinnumero/:debitSaldo/:nostoSumma',
   } 
 });
 
-router.get('/:id/:tilinumero/:kortinnumero/:creditSaldo/:nostoSumma/:luottoraja',
+router.get('/nosto/:id/:tilinumero/:kortinnumero/:creditSaldo/:nostoSumma/:luottoraja',
  function(request, response) {
   if (request.params.id) {
     procedures.nostaRahaaCredit(request.params.id, request.params.tilinumero, request.params.kortinnumero, request.params.creditSaldo, request.params.nostoSumma,request.params.luottoraja, function(err) {
@@ -27,9 +41,10 @@ router.get('/:id/:tilinumero/:kortinnumero/:creditSaldo/:nostoSumma/:luottoraja'
       } else {
         response.send("Credit nosto suoritettu");
       }
-      
     });
   } 
 });
+
+
 
 module.exports = router;
