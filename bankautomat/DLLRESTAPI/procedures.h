@@ -18,11 +18,11 @@ public:
     void suoritaDebitNosto(QString, QString, QString, QString, QString);
 
     void suoritaCreditNosto(QString, QString, QString, QString, QString, QString);
+    void suoritaTalletus(QString, QString, QString, QString, QString);
 private:
     QString base_url;
 
-    QNetworkAccessManager *getDebitManager;
-    QNetworkAccessManager *getCreditManager;
+    QNetworkAccessManager *getManager;
 
     QNetworkReply *reply;
     QByteArray response_data;
@@ -31,8 +31,7 @@ signals:
     //void tiedotListSignal(QStringList);
 
 private slots:
-    void getDebitNostoSlot(QNetworkReply *reply);
-    void getCreditNostoSlot(QNetworkReply *reply);
+    void getSlot(QNetworkReply *reply);
 };
 
 #endif // PROCEDURES_H

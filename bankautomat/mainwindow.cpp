@@ -37,7 +37,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(objectNostaRahaa, SIGNAL(nostaRahaa(QString)),
             this, SLOT(nostaRahaaSlot(QString)));
 
-    connect(objectTalletaRahaa, SIGNAL(talletaRahaaValittu()),
+    connect(objectpaakayttoliittyma, SIGNAL(talletaRahaaValittu()),
             this, SLOT(talletaRahaaValittuSlot()));
 
     connect(objectCreditOrDebit, SIGNAL(kirjauduUlosSignal()),
