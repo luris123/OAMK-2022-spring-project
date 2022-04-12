@@ -49,6 +49,7 @@ void paakayttoliittyma::timer_slot()
 
 void paakayttoliittyma::on_depositBtn_clicked()
 {
+
    emit talletaRahaaValittu();
 }
 

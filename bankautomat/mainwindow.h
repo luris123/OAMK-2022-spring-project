@@ -36,6 +36,7 @@ public slots:
     void nostaRahaaValittuSlot();
     void nostaRahaaSlot(QString);
     void talletaRahaaValittuSlot();
+    void talletaRahaaSlot(QString);
     void kirjauduUlosSlot();
 
 private:

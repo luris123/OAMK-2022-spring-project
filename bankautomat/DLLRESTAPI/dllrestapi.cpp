@@ -20,9 +20,11 @@ DLLRESTAPI::~DLLRESTAPI()
 {
     delete objectAsiakas;
     delete objectLogin;
+    delete objectProcedures;
 
     objectAsiakas = nullptr;
     objectLogin = nullptr;
+    objectProcedures = nullptr;
 }
 
 void DLLRESTAPI::haeAsiakkaanTiedot(QString kortinnumero)
@@ -32,7 +34,6 @@ void DLLRESTAPI::haeAsiakkaanTiedot(QString kortinnumero)
 
 void DLLRESTAPI::suoritaDebitNosto(QString id, QString tilinumero, QString kortinnumero, QString debitSaldo, QString nostoSumma)
 {
-    qDebug() << "taalla";
     objectProcedures->suoritaDebitNosto(id, tilinumero, kortinnumero, debitSaldo, nostoSumma);
 }
 
