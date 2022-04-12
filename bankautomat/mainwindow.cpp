@@ -46,6 +46,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(objectCreditOrDebit, SIGNAL(kirjauduUlosSignal()),
             this, SLOT(kirjauduUlosSlot()));
 
+    connect(objectpaakayttoliittyma, SIGNAL(tilitapahtumaValinta(QString)),
+            this, SLOT(tilitapahtumaValintaSlot(QString)));
+
     connect(objectpaakayttoliittyma, SIGNAL(kirjauduUlosSignal()),
             this, SLOT(kirjauduUlosSlot()));
 
@@ -158,6 +161,7 @@ void MainWindow::nostaRahaaSlot(QString nostoSumma)
 
         debitSaldo = QString::number(debitSaldo.toFloat() - nostoSumma.toFloat());
         objectpaakayttoliittyma->asetaTiedot(valinta, nimi, debitSaldo);
+        //tassa pitäisi päivittää tilitapahtumat!!!
 
     }
     else if(valinta == "credit")
@@ -167,6 +171,7 @@ void MainWindow::nostaRahaaSlot(QString nostoSumma)
 
        creditSaldo = QString::number(creditSaldo.toFloat() - nostoSumma.toFloat());
        objectpaakayttoliittyma->asetaTiedot(valinta, nimi, creditSaldo);
+       //tassa pitäisi päivittää tilitapahtumat!!!
 
     }
 }
@@ -187,6 +192,7 @@ void MainWindow::talletaRahaaSlot(QString talletusSumma)
 
         debitSaldo = QString::number(debitSaldo.toFloat() + talletusSumma.toFloat());
         objectpaakayttoliittyma->asetaTiedot(valinta, nimi, debitSaldo);
+        //tassa pitäisi päivittää tilitapahtumat!!!
 
     }
     else if(valinta == "credit")
@@ -197,8 +203,23 @@ void MainWindow::talletaRahaaSlot(QString talletusSumma)
 
        creditSaldo = QString::number(creditSaldo.toFloat() + talletusSumma.toFloat());
        objectpaakayttoliittyma->asetaTiedot(valinta, nimi, creditSaldo);
+       //tassa pitäisi päivittää tilitapahtumat!!!
 
     }
+}
+
+void MainWindow::tilitapahtumaValintaSlot(QString valinta)
+{
+
+    if(valinta == "ylos")
+    {
+        qDebug() << "get 10 tilitapahtumaa taaksepäin";
+    }
+    else if(valinta == "alas")
+    {
+        qDebug() << "mennään 10 tilitapahtumaa eteenpäin";
+    }
+
 }
 
 void MainWindow::kirjauduUlosSlot()
