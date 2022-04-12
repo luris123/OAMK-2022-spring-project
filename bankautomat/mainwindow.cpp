@@ -5,14 +5,15 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
+     ui->setupUi(this);
 
     objectDLLSerialPort = new DLLSerialPort;
     objectDLLPinCode = new DLLPinCode;
     objectDLLRESTAPI = new DLLRESTAPI;
 
-   // objectNostaRahaa = new NostaRahaa;
-    objectCreditOrDebit = new creditOrDebit();
+    objectpaakayttoliittyma = new paakayttoliittyma;
+    objectCreditOrDebit = new creditOrDebit;
+    objectNostaRahaa = new NostaRahaa;
 
     connect(objectDLLSerialPort, SIGNAL(kortinNumeroSignal(QString)),
             this, SLOT(kortinNumeroSlot(QString)));
@@ -28,6 +29,18 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(objectCreditOrDebit, SIGNAL(tilinValinta(QString)),
             this, SLOT(tiliValittuSlot(QString)));
+
+    connect(objectpaakayttoliittyma, SIGNAL(nostaRahaaValittu()),
+            this, SLOT(nostaRahaaValittuSlot()));
+
+    connect(objectNostaRahaa, SIGNAL(nostaRahaa(QString)),
+            this, SLOT(nostaRahaaSlot(QString)));
+
+    connect(objectCreditOrDebit, SIGNAL(kirjauduUlosSignal()),
+            this, SLOT(kirjauduUlosSlot()));
+
+    connect(objectpaakayttoliittyma, SIGNAL(kirjauduUlosSignal()),
+            this, SLOT(kirjauduUlosSlot()));
 
 }
 
@@ -96,11 +109,7 @@ void MainWindow::asiakasTiedotSlot(QStringList tiedotLista)
     if(creditTilinumero == NULL)
     {
         valinta = "debit";
-        objectpaakayttoliittyma = new paakayttoliittyma(NULL, "debit", nimi, debitSaldo, id_Tili);
-
-        connect(objectpaakayttoliittyma, SIGNAL(nostaRahaaSignal(QString)),
-                this, SLOT(nostaRahaaSlot(QString)));
-
+        objectpaakayttoliittyma->asetaTiedot(valinta, nimi, debitSaldo);
         objectpaakayttoliittyma->show();
     }
     else if(creditTilinumero != NULL)
@@ -113,41 +122,54 @@ void MainWindow::tiliValittuSlot(QString tilinValinta)
 {
     if(tilinValinta == "debit")
     {
-        valinta = tilinValinta;
-        objectpaakayttoliittyma = new paakayttoliittyma(NULL, "debit", nimi, debitSaldo, id_Tili);
-
-        connect(objectpaakayttoliittyma, SIGNAL(nostaRahaaSignal(QString)),
-                this, SLOT(nostaRahaaSlot(QString)));
-
+        objectpaakayttoliittyma->asetaTiedot(valinta, nimi, debitSaldo);
         objectpaakayttoliittyma->show();
     }
     else if(tilinValinta == "credit")
     {
-        valinta = tilinValinta;
-        objectpaakayttoliittyma = new paakayttoliittyma(NULL, "credit", nimi, creditSaldo, id_Tili);
-
-        connect(objectpaakayttoliittyma, SIGNAL(nostaRahaaSignal(QString)),
-                this, SLOT(nostaRahaaSlot(QString)));
-
+        objectpaakayttoliittyma->asetaTiedot(valinta, nimi, creditSaldo);
         objectpaakayttoliittyma->show();
     }
+}
+
+void MainWindow::nostaRahaaValittuSlot()
+{
+    qDebug() << "nostaRahaaValittu Slotissa";
+    objectNostaRahaa->show();
 }
 
 void MainWindow::nostaRahaaSlot(QString nostoSumma)
 {
     if(valinta == "debit")
     {
-        objectDLLRESTAPI->suoritaDebitNosto(id_Tili, debitTilinumero, kortinnumero, debitSaldo, nostoSumma);
-
-
         qDebug() << "Nostetaan debit tililtä: " << nostoSumma;
+       // objectDLLRESTAPI->suoritaDebitNosto(id_Tili, debitTilinumero, "06000D8998", debitSaldo, nostoSumma);
+
+        debitSaldo = QString::number(debitSaldo.toFloat() - nostoSumma.toFloat());
+        objectpaakayttoliittyma->asetaTiedot(valinta, nimi, debitSaldo);
+
     }
     else if(valinta == "credit")
     {
-       QString strNostoSumma = QString::number(nostoSumma);
-       objectDLLRESTAPI->suoritaCreditNosto(id_Tili, creditTilinumero, kortinnumero, creditSaldo, strNostoSumma, luottoraja);
+       objectDLLRESTAPI->suoritaCreditNosto(id_Tili, creditTilinumero, kortinnumero, creditSaldo, nostoSumma, luottoraja);
 
        qDebug() << "Nostetaan credit tililtä: " << nostoSumma;
     }
+}
+
+void MainWindow::kirjauduUlosSlot()
+{
+    kortinnumero = nullptr;
+    id_Tili = nullptr;
+    id_Asiakas = nullptr;
+    nimi = nullptr;
+    debitTilinumero = nullptr;
+    creditTilinumero = nullptr;
+    debitSaldo = nullptr;
+    creditSaldo = nullptr;
+    valinta = nullptr;
+    luottoraja = nullptr;
+
+    delete this;
 }
 

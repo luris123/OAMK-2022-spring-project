@@ -18,15 +18,17 @@ class paakayttoliittyma : public QDialog
     Q_OBJECT
 
 public:
-     explicit paakayttoliittyma(QWidget *parent = nullptr, QString = nullptr, QString = nullptr, QString = nullptr, QString = nullptr);
+     explicit paakayttoliittyma(QWidget *parent = nullptr);
     ~paakayttoliittyma();
 
+    void asetaTiedot(QString tilinValinta, QString nimi, QString saldo);
+
 signals:
-    void nostaRahaaSignal(QString);
+    void nostaRahaaValittu();
+    void kirjauduUlosSignal();
 
 private slots:
 
-    void nostaRahaaSlot(QString);
 
     void timer_slot();
 
@@ -45,8 +47,6 @@ private:
     TalletaRahaa *objectTalletaRahaa; // Talleta rahaa aloitus
     NostaRahaa *objectNostaRahaa;
     QTimer *objectTimer;
-
-    QString id_tili;
 };
 
 #endif // PAAKAYTTOLIITTYMA_H

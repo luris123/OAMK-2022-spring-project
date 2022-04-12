@@ -8,7 +8,7 @@ procedures::procedures(QString url)
 void procedures::suoritaDebitNosto(QString id, QString tilinumero, QString kortinnumero, QString debitSaldo, QString nostoSumma)
 {
     QNetworkRequest request((base_url + "/" + id + "/" + tilinumero + "/" + kortinnumero + "/" + debitSaldo + "/" + nostoSumma));
-
+    qDebug() << base_url + "/" + id + "/" + tilinumero + "/" + kortinnumero + "/" + debitSaldo + "/" + nostoSumma;
     getDebitManager = new QNetworkAccessManager(this);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 

@@ -29,5 +29,7 @@ void creditOrDebit::on_credit_btn_clicked()
 void creditOrDebit::on_kirjauduUlos_btn_clicked()
 {
     this->close();
+    return;
+    emit kirjauduUlosSignal();
 }
 
