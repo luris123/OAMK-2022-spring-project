@@ -183,6 +183,8 @@ void MainWindow::talletaRahaaSlot(QString talletusSumma)
     {
         qDebug() << "Talletetaan Debit tilille " + talletusSumma;
 
+        objectDLLRESTAPI->suoritaTalletus(valinta, id_Tili, debitTilinumero, "0600064972", talletusSumma);
+
         debitSaldo = QString::number(debitSaldo.toFloat() + talletusSumma.toFloat());
         objectpaakayttoliittyma->asetaTiedot(valinta, nimi, debitSaldo);
 
@@ -190,6 +192,8 @@ void MainWindow::talletaRahaaSlot(QString talletusSumma)
     else if(valinta == "credit")
     {
        qDebug() << "Talletetaan Credit tilille " + talletusSumma;
+
+       objectDLLRESTAPI->suoritaTalletus(valinta, id_Tili, creditTilinumero, "0600064972", talletusSumma);
 
        creditSaldo = QString::number(creditSaldo.toFloat() + talletusSumma.toFloat());
        objectpaakayttoliittyma->asetaTiedot(valinta, nimi, creditSaldo);

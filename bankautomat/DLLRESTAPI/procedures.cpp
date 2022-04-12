@@ -38,9 +38,9 @@ void procedures::getSlot(QNetworkReply *reply)
     //emit tiedotListSignal(tiedotList);
 }
 
-void procedures::suoritaTalletus(QString id, QString tilityyppi, QString tilinumero, QString kortinnumero, QString talletussumma)
+void procedures::suoritaTalletus(QString tilityyppi, QString id, QString tilinumero, QString kortinnumero, QString talletussumma)
 {
-    QNetworkRequest request((base_url + "/talletus" + "/" + id + "/" + tilityyppi + "/" + tilinumero + "/" + kortinnumero + "/" + talletussumma));
+    QNetworkRequest request((base_url + "/talletus" + "/" + tilityyppi + "/" + id + "/" + tilinumero + "/" + kortinnumero + "/" + talletussumma));
 
     getManager = new QNetworkAccessManager(this);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");

@@ -20,6 +20,7 @@ public:
     void haeAsiakkaanTiedot(QString);
     void suoritaDebitNosto(QString, QString, QString, QString, QString);
     void suoritaCreditNosto(QString, QString, QString, QString, QString, QString);
+    void suoritaTalletus(QString, QString, QString, QString, QString);
 
 private:
     asiakas *objectAsiakas;
