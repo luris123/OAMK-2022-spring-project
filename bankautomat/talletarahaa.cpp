@@ -20,16 +20,6 @@ TalletaRahaa::~TalletaRahaa()
     delete ui;
 }
 
-float TalletaRahaa::getTalletaRahaaValue()    // testaamista varten osa
-{
-    return RahaValue;
-}
-
-void TalletaRahaa::setRahaValue(float a)
-{
-    RahaValue = RahaValue + a;
-    qDebug() << getTalletaRahaaValue();
-}
 
 void TalletaRahaa::timer_slot_talleta()
 {
@@ -38,72 +28,72 @@ void TalletaRahaa::timer_slot_talleta()
 
 void TalletaRahaa::on_A1_clicked()
 {
-    ui -> lineEdit ->setText(TempText+"1");
-    TempText = ui -> lineEdit -> text();
+    ui -> lineEdit ->setText(talletusSumma+"1");
+    talletusSumma = ui -> lineEdit -> text();
     objectTimerTalleta->start(10000);
 }
 
 
 void TalletaRahaa::on_A2_clicked()
 {
-    ui -> lineEdit ->setText(TempText+"2");
-    TempText = ui -> lineEdit -> text();
+    ui -> lineEdit ->setText(talletusSumma+"2");
+    talletusSumma = ui -> lineEdit -> text();
     objectTimerTalleta->start(10000);
 }
 
 
 void TalletaRahaa::on_A3_clicked()
 {
-    ui -> lineEdit ->setText(TempText+"3");
-    TempText = ui -> lineEdit -> text();
+    ui -> lineEdit ->setText(talletusSumma+"3");
+    talletusSumma = ui -> lineEdit -> text();
     objectTimerTalleta->start(10000);
 }
 
 
 void TalletaRahaa::on_A4_clicked()
 {
-    ui -> lineEdit ->setText(TempText+"4");
-    TempText = ui -> lineEdit -> text();
+    ui -> lineEdit ->setText(talletusSumma+"4");
+    talletusSumma = ui -> lineEdit -> text();
     objectTimerTalleta->start(10000);
 }
 
 
 void TalletaRahaa::on_A5_clicked()
 {
-    ui -> lineEdit ->setText(TempText+"5");
-    TempText = ui -> lineEdit -> text();
+    ui -> lineEdit ->setText(talletusSumma+"5");
+    talletusSumma = ui -> lineEdit -> text();
     objectTimerTalleta->start(10000);
 }
 
 
 void TalletaRahaa::on_A6_clicked()
 {
-    ui -> lineEdit ->setText(TempText+"6");
-    TempText = ui -> lineEdit -> text();
+    ui -> lineEdit ->setText(talletusSumma+"6");
+    talletusSumma = ui -> lineEdit -> text();
     objectTimerTalleta->start(10000);
 }
 
 
 void TalletaRahaa::on_A7_clicked()
 {
-    ui -> lineEdit ->setText(TempText+"7");
-    TempText = ui -> lineEdit -> text();
+    ui -> lineEdit ->setText(talletusSumma+"7");
+    talletusSumma = ui -> lineEdit -> text();
     objectTimerTalleta->start(10000);
 }
 
 
 void TalletaRahaa::on_A8_clicked()
 {
-    ui -> lineEdit ->setText(TempText+"8");
-    TempText = ui -> lineEdit -> text();
+    ui -> lineEdit ->setText(talletusSumma+"8");
+    talletusSumma = ui -> lineEdit -> text();
     objectTimerTalleta->start(10000);
 }
 
 
 void TalletaRahaa::on_A9_clicked()
 {
-    ui -> lineEdit ->setText(TempText+"9");
-    TempText = ui -> lineEdit -> text();
+    ui -> lineEdit ->setText(talletusSumma+"9");
+    talletusSumma = ui -> lineEdit -> text();
     objectTimerTalleta->start(10000);
 }
 
@@ -111,24 +101,23 @@ void TalletaRahaa::on_A9_clicked()
 void TalletaRahaa::on_ClearBtn_clicked()
 {
     ui -> lineEdit ->setText("");
-    TempText = ui -> lineEdit -> text();
+    talletusSumma = ui -> lineEdit -> text();
     objectTimerTalleta->start(10000);
 }
 
 
 void TalletaRahaa::on_A0_clicked()
 {
-    ui -> lineEdit ->setText(TempText+"0");
-    TempText = ui -> lineEdit -> text();
+    ui -> lineEdit ->setText(talletusSumma+"0");
+    talletusSumma = ui -> lineEdit -> text();
     objectTimerTalleta->start(10000);
 }
 
 
 void TalletaRahaa::on_EnterBtn_clicked()
 {
-    TempText = ui -> lineEdit -> text();
-    qDebug() << TempText;
-    setRahaValue(TempText.toDouble());
+    talletusSumma = ui -> lineEdit -> text();
+    emit talletaRahaa(talletusSumma);
     objectTimerTalleta->start(10000);
 }
 
@@ -139,14 +128,14 @@ void TalletaRahaa::on_SuljeBtn_clicked()
 
 void TalletaRahaa::on_DecimalBtn_clicked()
 {
-    ui -> lineEdit ->setText(TempText+".");
-    TempText = ui -> lineEdit -> text();
+    ui -> lineEdit ->setText(talletusSumma+".");
+    talletusSumma = ui -> lineEdit -> text();
     objectTimerTalleta->start(10000);
 }
 
 void TalletaRahaa::on_BackBtn_clicked()
 {
-    TempText = TempText.remove(TempText.length()-1, TempText.length());
-    ui -> lineEdit ->setText(TempText);
+    talletusSumma = talletusSumma.remove(talletusSumma.length()-1, talletusSumma.length());
+    ui -> lineEdit ->setText(talletusSumma);
     objectTimerTalleta->start(10000);
 }

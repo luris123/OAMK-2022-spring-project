@@ -49,9 +49,8 @@ void paakayttoliittyma::timer_slot()
 
 void paakayttoliittyma::on_depositBtn_clicked()
 {
-   // objectTimer->stop();
-
-   // objectTimer->start(30000);
+   qDebug() << "talletus Valittu";
+   emit talletaRahaaValittu();
 }
 
 void paakayttoliittyma::on_withdrawBtn_clicked()

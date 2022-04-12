@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     objectpaakayttoliittyma = new paakayttoliittyma;
     objectCreditOrDebit = new creditOrDebit;
     objectNostaRahaa = new NostaRahaa;
+    objectTalletaRahaa = new TalletaRahaa;
 
     connect(objectDLLSerialPort, SIGNAL(kortinNumeroSignal(QString)),
             this, SLOT(kortinNumeroSlot(QString)));
@@ -35,6 +36,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(objectNostaRahaa, SIGNAL(nostaRahaa(QString)),
             this, SLOT(nostaRahaaSlot(QString)));
+
+    connect(objectpaakayttoliittyma, SIGNAL(talletaRahaaValittu()),
+            this, SLOT(talletaRahaaValittuSlot()));
+
+    connect(objectTalletaRahaa, SIGNAL(talletaRahaa(QString)),
+            this, SLOT(talletaRahaaSlot(QString)));
 
     connect(objectCreditOrDebit, SIGNAL(kirjauduUlosSignal()),
             this, SLOT(kirjauduUlosSlot()));
@@ -160,6 +167,31 @@ void MainWindow::nostaRahaaSlot(QString nostoSumma)
        objectDLLRESTAPI->suoritaCreditNosto(id_Tili, creditTilinumero, "0600064972", creditSaldo, nostoSumma, luottoraja);
 
        creditSaldo = QString::number(creditSaldo.toFloat() - nostoSumma.toFloat());
+       objectpaakayttoliittyma->asetaTiedot(valinta, nimi, creditSaldo);
+
+    }
+}
+
+void MainWindow::talletaRahaaValittuSlot()
+{
+    objectTalletaRahaa->show();
+}
+
+void MainWindow::talletaRahaaSlot(QString talletusSumma)
+{
+    if(valinta == "debit")
+    {
+        qDebug() << "Talletetaan Debit tilille " + talletusSumma;
+
+        debitSaldo = QString::number(debitSaldo.toFloat() + talletusSumma.toFloat());
+        objectpaakayttoliittyma->asetaTiedot(valinta, nimi, debitSaldo);
+
+    }
+    else if(valinta == "credit")
+    {
+       qDebug() << "Talletetaan Credit tilille " + talletusSumma;
+
+       creditSaldo = QString::number(creditSaldo.toFloat() + talletusSumma.toFloat());
        objectpaakayttoliittyma->asetaTiedot(valinta, nimi, creditSaldo);
 
     }
