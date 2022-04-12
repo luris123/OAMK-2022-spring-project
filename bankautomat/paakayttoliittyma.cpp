@@ -24,6 +24,7 @@ paakayttoliittyma::~paakayttoliittyma()
 
 void paakayttoliittyma::asetaTiedot(QString tilinValinta, QString nimi, QString saldo)
 {
+    qDebug() << "paakayttoliittymassa " + tilinValinta + " " + nimi + " "+ saldo;
 
     if(tilinValinta == "credit")
     {

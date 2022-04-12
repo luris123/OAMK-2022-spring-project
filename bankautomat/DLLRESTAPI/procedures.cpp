@@ -7,7 +7,7 @@ procedures::procedures(QString url)
 
 void procedures::suoritaDebitNosto(QString id, QString tilinumero, QString kortinnumero, QString debitSaldo, QString nostoSumma)
 {
-    QNetworkRequest request((base_url + "/" + id + "/" + tilinumero + "/" + kortinnumero + "/" + debitSaldo + "/" + nostoSumma));
+    QNetworkRequest request((base_url + "/nosto" +  "/" + id + "/" + tilinumero + "/" + kortinnumero + "/" + debitSaldo + "/" + nostoSumma));
     qDebug() << base_url + "/" + id + "/" + tilinumero + "/" + kortinnumero + "/" + debitSaldo + "/" + nostoSumma;
     getDebitManager = new QNetworkAccessManager(this);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
@@ -28,7 +28,7 @@ void procedures::getDebitNostoSlot(QNetworkReply *reply)
 
 void procedures::suoritaCreditNosto(QString id, QString tilinumero, QString kortinnumero, QString creditSaldo, QString nostoSumma, QString luottoraja)
 {
-    QNetworkRequest request((base_url + "/" + id + "/" + tilinumero + "/" + kortinnumero + "/" + ("-")+creditSaldo + "/" + nostoSumma + "/" + ("-")+luottoraja));
+    QNetworkRequest request((base_url + "/nosto" +  "/" + id + "/" + tilinumero + "/" + kortinnumero + "/" + ("-")+creditSaldo + "/" + nostoSumma + "/" + ("-")+luottoraja));
 
     getCreditManager = new QNetworkAccessManager(this);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
