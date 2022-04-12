@@ -19,6 +19,7 @@ public:
 
 signals:
     void tilinValinta(QString);
+    void kirjauduUlosSignal();
 
 private slots:
     void on_debit_btn_clicked();

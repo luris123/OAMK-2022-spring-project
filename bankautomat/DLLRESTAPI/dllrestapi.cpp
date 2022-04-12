@@ -32,7 +32,7 @@ void DLLRESTAPI::haeAsiakkaanTiedot(QString kortinnumero)
 
 void DLLRESTAPI::suoritaDebitNosto(QString id, QString tilinumero, QString kortinnumero, QString debitSaldo, QString nostoSumma)
 {
-    qDebug() << nostoSumma;
+    qDebug() << "taalla";
     objectProcedures->suoritaDebitNosto(id, tilinumero, kortinnumero, debitSaldo, nostoSumma);
 }
 

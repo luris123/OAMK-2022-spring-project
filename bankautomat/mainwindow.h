@@ -32,7 +32,9 @@ public slots:
     void loginSlot(QString);
     void asiakasTiedotSlot(QStringList);
     void tiliValittuSlot(QString);
+    void nostaRahaaValittuSlot();
     void nostaRahaaSlot(QString);
+    void kirjauduUlosSlot();
 
 private:
     Ui::MainWindow *ui;
