@@ -21,6 +21,7 @@ public:
     void suoritaDebitNosto(QString, QString, QString, QString, QString);
     void suoritaCreditNosto(QString, QString, QString, QString, QString, QString);
     void suoritaTalletus(QString, QString, QString, QString, QString);
+    void haeTilitapahtumat(QString, QString, QString);
 
 private:
     asiakas *objectAsiakas;
@@ -32,10 +33,12 @@ private:
 signals:
     void loginSignalToExe(QString);
     void tiedotListToExe(QStringList);
+    void tilitapahtumatToExe(QStringList);
 
 private slots:
     void interfaceLoginSlot(QString);
     void tiedotListFromEngine(QStringList);
+    void tilitapahtumatFromEngine(QStringList);
 };
 
 #endif // DLLRESTAPI_H

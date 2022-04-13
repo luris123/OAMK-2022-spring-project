@@ -22,22 +22,28 @@ paakayttoliittyma::~paakayttoliittyma()
     delete objectTimer;
 }
 
-void paakayttoliittyma::asetaTiedot(QString tilinValinta, QString nimi, QString saldo)
+void paakayttoliittyma::asetaTiedot(QString tilinValinta, QString nimi, QString saldo, QStringList tilitapahtumat)
 {
-    qDebug() << "paakayttoliittymassa " + tilinValinta + " " + nimi + " "+ saldo;
 
     if(tilinValinta == "credit")
     {
         ui->ownerLabel->setText(nimi);
         ui->saldoLabel1->setText("Credit Saldo: ");
         ui->saldoLabel2->setText(saldo);
+        ui->listWidget->addItems(tilitapahtumat);
     }
     else if(tilinValinta == "debit")
        {
         ui->ownerLabel->setText(nimi);
         ui->saldoLabel1->setText("Debit Saldo: ");
         ui->saldoLabel2->setText(saldo);
-       }
+        ui->listWidget->addItems(tilitapahtumat);
+    }
+}
+
+void paakayttoliittyma::puhdistaListWidget()
+{
+    ui->listWidget->clear();
 }
 
 

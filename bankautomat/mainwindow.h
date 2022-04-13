@@ -32,6 +32,7 @@ public slots:
     void pinkoodiSlot(QString);
     void loginSlot(QString);
     void asiakasTiedotSlot(QStringList);
+    void tilitapahtumatSlot(QStringList);
     void tiliValittuSlot(QString);
     void nostaRahaaValittuSlot();
     void nostaRahaaSlot(QString);
@@ -62,9 +63,10 @@ private:
     QString creditSaldo;
     QString valinta;
     QString luottoraja;
+    QStringList tilitapahtumat;
 
-    int tilitapahtumaHakuMaara;
-    int kiinteaTilitapahtumaHakuMaara;
+    int kiinteaHakuMaara = 0;
+
 
 };
 #endif // MAINWINDOW_H

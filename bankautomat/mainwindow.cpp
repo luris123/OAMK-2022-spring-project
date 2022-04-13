@@ -28,6 +28,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(objectDLLRESTAPI, SIGNAL(tiedotListToExe(QStringList)),
             this, SLOT(asiakasTiedotSlot(QStringList)));
 
+    connect(objectDLLRESTAPI, SIGNAL(tilitapahtumatToExe(QStringList)),
+            this, SLOT(tilitapahtumatSlot(QStringList)));
+
     connect(objectCreditOrDebit, SIGNAL(tilinValinta(QString)),
             this, SLOT(tiliValittuSlot(QString)));
 
@@ -51,6 +54,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(objectpaakayttoliittyma, SIGNAL(kirjauduUlosSignal()),
             this, SLOT(kirjauduUlosSlot()));
+
 
 }
 
@@ -116,16 +120,28 @@ void MainWindow::asiakasTiedotSlot(QStringList tiedotLista)
         qDebug() << str;
     };
 
+    objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "5", "0");
+
     if(creditTilinumero == NULL)
     {
         valinta = "debit";
-        objectpaakayttoliittyma->asetaTiedot(valinta, nimi, debitSaldo);
         objectpaakayttoliittyma->show();
     }
     else if(creditTilinumero != NULL)
     {
         objectCreditOrDebit->show();
     }
+
+}
+
+void MainWindow::tilitapahtumatSlot(QStringList paramTilitapahtumat)
+{
+    objectpaakayttoliittyma->puhdistaListWidget();
+    qDebug() << "on taalla";
+
+    tilitapahtumat = paramTilitapahtumat;
+    objectpaakayttoliittyma->asetaTiedot(valinta, nimi, debitSaldo, tilitapahtumat);
+
 }
 
 void MainWindow::tiliValittuSlot(QString tilinValinta)
@@ -135,14 +151,14 @@ void MainWindow::tiliValittuSlot(QString tilinValinta)
     {
         valinta = tilinValinta;
         qDebug() << "debit valittu";
-        objectpaakayttoliittyma->asetaTiedot(valinta, nimi, debitSaldo);
+        objectpaakayttoliittyma->asetaTiedot(valinta, nimi, debitSaldo, tilitapahtumat);
         objectpaakayttoliittyma->show();
     }
     else if(tilinValinta == "credit")
     {
         valinta = tilinValinta;
         qDebug() << "credit valittu";
-        objectpaakayttoliittyma->asetaTiedot(valinta, nimi, creditSaldo);
+        objectpaakayttoliittyma->asetaTiedot(valinta, nimi, creditSaldo, tilitapahtumat);
         objectpaakayttoliittyma->show();
     }
 }
@@ -160,8 +176,8 @@ void MainWindow::nostaRahaaSlot(QString nostoSumma)
         objectDLLRESTAPI->suoritaDebitNosto(id_Tili, debitTilinumero, "0600064972", debitSaldo, nostoSumma);
 
         debitSaldo = QString::number(debitSaldo.toFloat() - nostoSumma.toFloat());
-        objectpaakayttoliittyma->asetaTiedot(valinta, nimi, debitSaldo);
-        //tassa pitäisi päivittää tilitapahtumat!!!
+        objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "10", "0");
+
 
     }
     else if(valinta == "credit")
@@ -170,8 +186,8 @@ void MainWindow::nostaRahaaSlot(QString nostoSumma)
        objectDLLRESTAPI->suoritaCreditNosto(id_Tili, creditTilinumero, "0600064972", creditSaldo, nostoSumma, luottoraja);
 
        creditSaldo = QString::number(creditSaldo.toFloat() - nostoSumma.toFloat());
-       objectpaakayttoliittyma->asetaTiedot(valinta, nimi, creditSaldo);
-       //tassa pitäisi päivittää tilitapahtumat!!!
+       objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "10", "0");
+
 
     }
 }
@@ -191,8 +207,7 @@ void MainWindow::talletaRahaaSlot(QString talletusSumma)
         objectDLLRESTAPI->suoritaTalletus(valinta, id_Tili, debitTilinumero, "0600064972", talletusSumma);
 
         debitSaldo = QString::number(debitSaldo.toFloat() + talletusSumma.toFloat());
-        objectpaakayttoliittyma->asetaTiedot(valinta, nimi, debitSaldo);
-        //tassa pitäisi päivittää tilitapahtumat!!!
+        objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "10", QString::number(kiinteaHakuMaara));
 
     }
     else if(valinta == "credit")
@@ -202,22 +217,30 @@ void MainWindow::talletaRahaaSlot(QString talletusSumma)
        objectDLLRESTAPI->suoritaTalletus(valinta, id_Tili, creditTilinumero, "0600064972", talletusSumma);
 
        creditSaldo = QString::number(creditSaldo.toFloat() + talletusSumma.toFloat());
-       objectpaakayttoliittyma->asetaTiedot(valinta, nimi, creditSaldo);
-       //tassa pitäisi päivittää tilitapahtumat!!!
+       objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "10", QString::number(kiinteaHakuMaara));
+
 
     }
 }
 
 void MainWindow::tilitapahtumaValintaSlot(QString valinta)
 {
+    qDebug() << kiinteaHakuMaara;
 
     if(valinta == "ylos")
     {
-        qDebug() << "get 10 tilitapahtumaa taaksepäin";
+
+      if(kiinteaHakuMaara >= 0)
+        {
+        kiinteaHakuMaara = kiinteaHakuMaara - 10;
+        objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "10", QString::number(kiinteaHakuMaara));
+        }
+      else kiinteaHakuMaara = 0;
     }
     else if(valinta == "alas")
     {
-        qDebug() << "mennään 10 tilitapahtumaa eteenpäin";
+        kiinteaHakuMaara = kiinteaHakuMaara + 10;
+        objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "10", QString::number(kiinteaHakuMaara));
     }
 
 }
