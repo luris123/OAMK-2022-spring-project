@@ -2,6 +2,7 @@
 #define PINDIALOG_H
 
 #include <QDialog>
+#include <QTimer>
 
 namespace Ui {
 class PinDialog;
@@ -18,6 +19,9 @@ public:
     void pinkoodiVaarin();
 
 private slots:
+
+    void timer_slot_pindialog();
+
     void on_A1_clicked();
 
     void on_A2_clicked();
@@ -46,6 +50,8 @@ private:
     Ui::PinDialog *ui;
     QString PinKoodi;
     int yritys = 3;
+
+    QTimer *objectTimerPinDialog;
 
 signals:
     void pinkoodiEngine(QString);

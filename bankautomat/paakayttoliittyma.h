@@ -31,7 +31,6 @@ signals:
 
 private slots:
 
-
     void timer_slot();
 
     void on_depositBtn_clicked();

@@ -2,6 +2,7 @@
 #define CREDITORDEBIT_H
 
 #include <QDialog>
+#include <QTimer>
 #include "paakayttoliittyma.h"
 
 namespace Ui {
@@ -22,6 +23,9 @@ signals:
     void kirjauduUlosSignal();
 
 private slots:
+
+    void timer_slot_CredDeb();
+
     void on_debit_btn_clicked();
 
     void on_credit_btn_clicked();
@@ -30,6 +34,7 @@ private slots:
 
 private:
     Ui::creditOrDebit *ui;
+    QTimer *objectTimerCredDeb;
 };
 
 #endif // CREDITORDEBIT_H
