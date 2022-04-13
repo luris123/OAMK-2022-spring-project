@@ -21,7 +21,8 @@ public:
      explicit paakayttoliittyma(QWidget *parent = nullptr);
     ~paakayttoliittyma();
 
-    void asetaTiedot(QString tilinValinta, QString nimi, QString saldo);
+    void asetaTiedot(QString, QString, QString, QStringList);
+    void puhdistaListWidget();
 
 signals:
     void nostaRahaaValittu();

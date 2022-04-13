@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>529</width>
+    <width>791</width>
     <height>395</height>
    </rect>
   </property>
@@ -16,10 +16,10 @@
   <widget class="QWidget" name="gridLayoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>60</y>
-     <width>321</width>
-     <height>271</height>
+     <x>30</x>
+     <y>40</y>
+     <width>821</width>
+     <height>351</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout_3">
@@ -75,7 +75,11 @@
     <item row="2" column="1">
      <layout class="QHBoxLayout" name="horizontalLayout_4">
       <item>
-       <widget class="QListWidget" name="listWidget"/>
+       <widget class="QListWidget" name="listWidget">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>

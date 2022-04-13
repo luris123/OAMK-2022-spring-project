@@ -19,6 +19,7 @@ public:
 
     void suoritaCreditNosto(QString, QString, QString, QString, QString, QString);
     void suoritaTalletus(QString, QString, QString, QString, QString);
+    void haeTilitapahtumat(QString, QString, QString);
 private:
     QString base_url;
 
@@ -28,10 +29,11 @@ private:
     QByteArray response_data;
 
 signals:
-    //void tiedotListSignal(QStringList);
+     void tilitapahtumaSignal(QStringList);
 
 private slots:
     void getSlot(QNetworkReply *reply);
+    void getTilitapahtumatSlot(QNetworkReply *reply);
 };
 
 #endif // PROCEDURES_H

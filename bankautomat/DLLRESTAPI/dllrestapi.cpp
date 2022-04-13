@@ -14,6 +14,9 @@ DLLRESTAPI::DLLRESTAPI()
     connect(objectAsiakas, SIGNAL(tiedotListSignal(QStringList)),
             this, SLOT(tiedotListFromEngine(QStringList)));
 
+    connect(objectProcedures, SIGNAL(tilitapahtumaSignal(QStringList)),
+            this, SLOT(tilitapahtumatFromEngine(QStringList)));
+
 }
 
 DLLRESTAPI::~DLLRESTAPI()
@@ -47,6 +50,11 @@ void DLLRESTAPI::suoritaTalletus(QString tilityyppi, QString id, QString tilinum
     objectProcedures->suoritaTalletus(tilityyppi, id, tilinumero,kortinnumero,talletussumma);
 }
 
+void DLLRESTAPI::haeTilitapahtumat(QString id, QString maara, QString hakumaara)
+{
+    objectProcedures->haeTilitapahtumat(id, maara, hakumaara);
+}
+
 void DLLRESTAPI::login(QString kortinnumero, QString pinnkoodi)
 {
     objectLogin->yritaKirjautua(kortinnumero, pinnkoodi);
@@ -60,5 +68,10 @@ void DLLRESTAPI::interfaceLoginSlot(QString signalFromLogin)
 void DLLRESTAPI::tiedotListFromEngine(QStringList tiedotList)
 {
     emit tiedotListToExe(tiedotList);
+}
+
+void DLLRESTAPI::tilitapahtumatFromEngine(QStringList tiedot)
+{
+    emit tilitapahtumatToExe(tiedot);
 }
 
