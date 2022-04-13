@@ -235,6 +235,15 @@ void MainWindow::kirjauduUlosSlot()
     valinta = nullptr;
     luottoraja = nullptr;
 
-    delete this;
+    delete objectDLLPinCode;
+    delete objectCreditOrDebit;
+
+    objectDLLPinCode = new DLLPinCode;
+    objectCreditOrDebit = new creditOrDebit;
+
+    connect(objectDLLPinCode, SIGNAL(pinkoodiInterface(QString)),
+           this, SLOT(pinkoodiSlot(QString)));
+    connect(objectCreditOrDebit, SIGNAL(tilinValinta(QString)),
+            this, SLOT(tiliValittuSlot(QString)));
 }
 
