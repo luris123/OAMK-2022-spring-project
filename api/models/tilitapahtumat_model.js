@@ -12,7 +12,7 @@ const tilitapahtumat = {
     return db.query("select * from tilitapahtumat", callback);
   },
   getByidTili: function (id_tili, maara, hakumaara, callback) {
-    return db.query("select * from tilitapahtumat where id_Tili=? limit 0, 10", [id_tili], callback);
+    return db.query("SET @maara = ?; SET @hakumaara = ?; select * from tilitapahtumat where id_Tili=? limit @maara, @hakumaara", [id_tili, maara, hakumaara], callback);
 
   },
   add: function (tilitapahtumat, callback) {
