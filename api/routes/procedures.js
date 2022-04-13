@@ -45,6 +45,17 @@ router.get('/nosto/:id/:tilinumero/:kortinnumero/:creditSaldo/:nostoSumma/:luott
   } 
 });
 
-
+router.get('/selaa/:id/:maara/:hakumaara', 
+  function(request, response) {
+  if (request.params.id) {
+    procedures.selaaTapahtumat(request.params.id, request.params.maara, request.params.hakumaara, function(err, dbResult){
+      if (err) {
+        response.send(err);
+      } else {
+        response.send(dbResult[0]);
+      }
+    });
+  }
+});
 
 module.exports = router;

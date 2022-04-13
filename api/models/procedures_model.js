@@ -14,6 +14,9 @@ const procedures = {
     talletaRahaa: function(id, tilityyppi, tilinumero, kortinnumero, talletussumma, callback) {
       return db.query('call talletaRahaa(?,?,?,?,?)',
        [id, tilityyppi, tilinumero, kortinnumero, talletussumma], callback);
+    },
+    selaaTapahtumat: function(id, maara, hakumaara, callback) {
+      return db.query('call selaaTilitapahtumia(?,?,?)',[id, maara, hakumaara], callback);
     }
 
 
