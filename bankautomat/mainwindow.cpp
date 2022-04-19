@@ -140,7 +140,15 @@ void MainWindow::tilitapahtumatSlot(QStringList paramTilitapahtumat)
     qDebug() << "on taalla";
 
     tilitapahtumat = paramTilitapahtumat;
-    objectpaakayttoliittyma->asetaTiedot(valinta, nimi, debitSaldo, tilitapahtumat);
+    
+    if(valinta == "debit")
+    {
+         objectpaakayttoliittyma->asetaTiedot(valinta, nimi, debitSaldo, tilitapahtumat);
+    }
+    else if(valinta=="credit")
+    {
+        objectpaakayttoliittyma->asetaTiedot(valinta, nimi, creditSaldo, tilitapahtumat);
+    }
 
 }
 
