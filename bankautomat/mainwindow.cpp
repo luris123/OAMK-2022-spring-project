@@ -179,11 +179,19 @@ void MainWindow::nostaRahaaSlot(QString nostoSumma)
 {
     if(valinta == "debit")
     {
-        qDebug() << "Nostetaan debit tililtä: " << nostoSumma;
-        objectDLLRESTAPI->suoritaDebitNosto(id_Tili, debitTilinumero, "0600064972", debitSaldo, nostoSumma);
+        if(nostoSumma.toFloat() <= debitSaldo.toFloat())
+        {
+            qDebug() << "Nostetaan debit tililtä: " << nostoSumma;
+            objectDLLRESTAPI->suoritaDebitNosto(id_Tili, debitTilinumero, "0600064972", debitSaldo, nostoSumma);
 
-        debitSaldo = QString::number(debitSaldo.toFloat() - nostoSumma.toFloat());
-        objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "10", "0");
+            debitSaldo = QString::number(debitSaldo.toFloat() - nostoSumma.toFloat());
+            objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "10", "0");
+        }
+        else
+        {
+            objectNostaRahaa->virheIlmotus();
+        }
+
 
     }
     else if(valinta == "credit")

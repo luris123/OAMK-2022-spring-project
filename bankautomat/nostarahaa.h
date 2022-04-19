@@ -16,6 +16,7 @@ class NostaRahaa : public QDialog
 public:
     explicit NostaRahaa(QWidget *parent = nullptr);
     ~NostaRahaa();
+    void virheIlmotus();
 
 signals:
     void nostaRahaa(QString);

@@ -12,7 +12,7 @@ void procedures::suoritaDebitNosto(QString id, QString tilinumero, QString korti
     getManager = new QNetworkAccessManager(this);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
-    connect(getManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(getDebitSlot(QNetworkReply*)));
+    connect(getManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(getSlot(QNetworkReply*)));
 
     reply = getManager->get(request);
 }

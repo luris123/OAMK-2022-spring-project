@@ -119,6 +119,8 @@ void TalletaRahaa::on_EnterBtn_clicked()
     talletusSumma = ui -> lineEdit -> text();
     emit talletaRahaa(talletusSumma);
     objectTimerTalleta->start(10000);
+    ui->lineEdit->clear();
+    talletusSumma.clear();
 }
 
 void TalletaRahaa::on_SuljeBtn_clicked()
