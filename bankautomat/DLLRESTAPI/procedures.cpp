@@ -12,7 +12,7 @@ void procedures::suoritaDebitNosto(QString id, QString tilinumero, QString korti
     getManager = new QNetworkAccessManager(this);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
-    connect(getManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(getDebitSlot(QNetworkReply*)));
+    connect(getManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(getSlot(QNetworkReply*)));
 
     reply = getManager->get(request);
 }
@@ -35,7 +35,6 @@ void procedures::getSlot(QNetworkReply *reply)
 
     qDebug() << response_data;
 
-    //emit tiedotListSignal(tiedotList);
 }
 
 void procedures::getTilitapahtumatSlot(QNetworkReply *reply)
@@ -51,8 +50,7 @@ void procedures::getTilitapahtumatSlot(QNetworkReply *reply)
     foreach (const QJsonValue &value, json_array) {
 
        QJsonObject json_obj = value.toObject();
-
-       tiedotList.insert(i, QString(json_obj["pvm_ja_aika"].toString()) + ", " + QString(json_obj["tilinumero"].toString()) + ", " + QString(json_obj["kortinnumero"].toString()) + ", " + QString(json_obj["tapahtuma"].toString()) + ", " + QString::number(json_obj["summa"].toInt()));
+       tiedotList.insert(i, QString(json_obj["pvm_ja_aika"].toString().replace("T", " ").replace(19, 5, "")) + ", " + QString(json_obj["tilinumero"].toString()) + ", " + QString(json_obj["kortinnumero"].toString()) + ", " + QString(json_obj["tapahtuma"].toString()) + ", " + QString::number(json_obj["summa"].toInt()));
 
        i++;
     }
