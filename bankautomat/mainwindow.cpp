@@ -120,7 +120,7 @@ void MainWindow::asiakasTiedotSlot(QStringList tiedotLista)
         qDebug() << str;
     };
 
-    objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "5", "0");
+    objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "10", "0");
 
     if(creditTilinumero == NULL)
     {
@@ -137,7 +137,7 @@ void MainWindow::asiakasTiedotSlot(QStringList tiedotLista)
 void MainWindow::tilitapahtumatSlot(QStringList paramTilitapahtumat)
 {
     objectpaakayttoliittyma->puhdistaListWidget();
-
+    tapahtumatListaPituus = paramTilitapahtumat.count();
     tilitapahtumat = paramTilitapahtumat;
     
     if(valinta == "debit")
@@ -236,7 +236,7 @@ void MainWindow::talletaRahaaSlot(QString talletusSumma)
 void MainWindow::tilitapahtumaValintaSlot(QString valinta)
 {
     qDebug() << kiinteaHakuMaara;
-
+    qDebug() << objectpaakayttoliittyma->tarkistaListWidget();
     if(valinta == "ylos")
     {
 
@@ -245,12 +245,16 @@ void MainWindow::tilitapahtumaValintaSlot(QString valinta)
         kiinteaHakuMaara = kiinteaHakuMaara - 10;
         objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "10", QString::number(kiinteaHakuMaara));
         }
-      else kiinteaHakuMaara = 0;
+      else kiinteaHakuMaara = kiinteaHakuMaara + 10;
     }
     else if(valinta == "alas")
     {
-        kiinteaHakuMaara = kiinteaHakuMaara + 10;
-        objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "10", QString::number(kiinteaHakuMaara));
+        if(tapahtumatListaPituus == 10)
+        {
+            kiinteaHakuMaara = kiinteaHakuMaara + 10;
+            objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "10", QString::number(kiinteaHakuMaara));
+        }
+
     }
 
 }

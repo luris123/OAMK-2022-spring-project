@@ -46,6 +46,11 @@ void paakayttoliittyma::puhdistaListWidget()
     ui->listWidget->clear();
 }
 
+int paakayttoliittyma::tarkistaListWidget()
+{
+    return ui->listWidget->count();
+}
+
 
 void paakayttoliittyma::timer_slot()
 {
@@ -75,6 +80,7 @@ void paakayttoliittyma::on_ylos_btn_clicked()
 {
     valinta = "ylos";
     emit tilitapahtumaValinta(valinta);
+    ui->listWidget->count();
 }
 
 

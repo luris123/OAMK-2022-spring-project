@@ -23,6 +23,7 @@ public:
 
     void asetaTiedot(QString, QString, QString, QStringList);
     void puhdistaListWidget();
+    int tarkistaListWidget();
 
 signals:
     void nostaRahaaValittu();
