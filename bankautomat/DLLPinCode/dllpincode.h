@@ -17,7 +17,6 @@ public:
     void naytaPinkoodiKayttoliittyma();
     void pinkoodiVaarin();
 
-
 private:
     PinDialog *objectPinDialog;
 
