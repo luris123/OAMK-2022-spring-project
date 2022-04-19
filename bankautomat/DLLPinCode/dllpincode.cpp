@@ -6,7 +6,6 @@ DLLPinCode::DLLPinCode()
 
     connect(objectPinDialog, SIGNAL(pinkoodiEngine(QString)),
             this, SLOT(pinkoodiSlot(QString)));
-
 }
 
 DLLPinCode::~DLLPinCode()
@@ -22,11 +21,8 @@ void DLLPinCode::naytaPinkoodiKayttoliittyma()
 
 void DLLPinCode::pinkoodiVaarin()
 {
-    qDebug() << "taalla";
     objectPinDialog->pinkoodiVaarin();
 }
-
-
 
 void DLLPinCode::pinkoodiSlot(QString pinkoodiEnginelta)
 {
