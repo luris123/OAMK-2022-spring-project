@@ -39,6 +39,7 @@ public slots:
     void talletaRahaaValittuSlot();
     void talletaRahaaSlot(QString);
     void tilitapahtumaValintaSlot(QString);
+    void singleShotTilitapahtumaSlot();
     void kirjauduUlosSlot();
 
 private:

@@ -185,7 +185,6 @@ void MainWindow::nostaRahaaSlot(QString nostoSumma)
             objectDLLRESTAPI->suoritaDebitNosto(id_Tili, debitTilinumero, "0600064972", debitSaldo, nostoSumma);
 
             debitSaldo = QString::number(debitSaldo.toFloat() - nostoSumma.toFloat());
-            objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "10", "0");
         }
         else
         {
@@ -200,9 +199,9 @@ void MainWindow::nostaRahaaSlot(QString nostoSumma)
        objectDLLRESTAPI->suoritaCreditNosto(id_Tili, creditTilinumero, "0600064972", creditSaldo, nostoSumma, luottoraja);
 
        creditSaldo = QString::number(creditSaldo.toFloat() - nostoSumma.toFloat());
-       objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "10", "0");
-
     }
+
+    QTimer::singleShot(500, this, SLOT(singleShotTilitapahtumaSlot()));
 }
 
 void MainWindow::talletaRahaaValittuSlot()
@@ -220,7 +219,6 @@ void MainWindow::talletaRahaaSlot(QString talletusSumma)
         objectDLLRESTAPI->suoritaTalletus(valinta, id_Tili, debitTilinumero, "0600064972", talletusSumma);
 
         debitSaldo = QString::number(debitSaldo.toFloat() + talletusSumma.toFloat());
-        objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "10", "0");
 
     }
     else if(valinta == "credit")
@@ -230,10 +228,9 @@ void MainWindow::talletaRahaaSlot(QString talletusSumma)
        objectDLLRESTAPI->suoritaTalletus(valinta, id_Tili, creditTilinumero, "0600064972", talletusSumma);
 
        creditSaldo = QString::number(creditSaldo.toFloat() + talletusSumma.toFloat());
-       objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "10", "0");
-
-
     }
+
+    QTimer::singleShot(500, this, SLOT(singleShotTilitapahtumaSlot()));
 }
 
 void MainWindow::tilitapahtumaValintaSlot(QString valinta)
@@ -256,6 +253,11 @@ void MainWindow::tilitapahtumaValintaSlot(QString valinta)
         objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "10", QString::number(kiinteaHakuMaara));
     }
 
+}
+
+void MainWindow::singleShotTilitapahtumaSlot()
+{
+    objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "10", "0");
 }
 
 void MainWindow::kirjauduUlosSlot()
