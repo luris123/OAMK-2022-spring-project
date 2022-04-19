@@ -64,25 +64,6 @@
     <string/>
    </property>
   </widget>
-  <widget class="QWidget" name="">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>73</y>
-     <width>381</width>
-     <height>191</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_4">
-    <item>
-     <widget class="QListWidget" name="listWidget">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
   <widget class="QPushButton" name="alas_btn">
    <property name="geometry">
     <rect>
@@ -175,6 +156,19 @@
    </property>
    <property name="text">
     <string/>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="listWidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>70</y>
+     <width>531</width>
+     <height>189</height>
+    </rect>
    </property>
   </widget>
  </widget>

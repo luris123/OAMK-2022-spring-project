@@ -16,6 +16,8 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -67,6 +69,7 @@ private:
     QStringList tilitapahtumat;
 
     int kiinteaHakuMaara = 0;
+    int tapahtumatListaPituus = 0;
 
 
 };
