@@ -17,6 +17,7 @@ public:
     explicit creditOrDebit(QWidget *parent = nullptr);
     ~creditOrDebit();
 
+    QTimer *objectTimerCredDeb;
 
 signals:
     void tilinValinta(QString);
@@ -34,7 +35,7 @@ private slots:
 
 private:
     Ui::creditOrDebit *ui;
-    QTimer *objectTimerCredDeb;
+
 };
 
 #endif // CREDITORDEBIT_H

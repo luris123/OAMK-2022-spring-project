@@ -9,7 +9,6 @@ PinDialog::PinDialog(QWidget *parent) :
     ui->lineEdit->setMaxLength(4);
 
     objectTimerPinDialog = new QTimer;
-    objectTimerPinDialog->start(10000);
 
     connect(objectTimerPinDialog, SIGNAL(timeout()),
             this, SLOT(timer_slot_pindialog()));

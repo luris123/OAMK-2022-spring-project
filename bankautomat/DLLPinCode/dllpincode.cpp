@@ -16,6 +16,7 @@ DLLPinCode::~DLLPinCode()
 
 void DLLPinCode::naytaPinkoodiKayttoliittyma()
 {
+    objectPinDialog->objectTimerPinDialog->start(10000);
     objectPinDialog->show();
 }
 

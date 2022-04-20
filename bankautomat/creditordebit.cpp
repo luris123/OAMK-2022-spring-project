@@ -8,7 +8,6 @@ creditOrDebit::creditOrDebit(QWidget *parent) :
     ui->setupUi(this);
 
     objectTimerCredDeb = new QTimer;
-    objectTimerCredDeb->start(10000);
 
     connect(objectTimerCredDeb, SIGNAL(timeout()),
             this, SLOT(timer_slot_CredDeb()));

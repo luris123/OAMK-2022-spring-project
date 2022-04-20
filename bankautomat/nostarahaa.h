@@ -17,6 +17,7 @@ public:
     explicit NostaRahaa(QWidget *parent = nullptr);
     ~NostaRahaa();
     void virheIlmoitus();
+    QTimer *objectTimerNosta;
 
 signals:
     void nostaRahaa(QString);
@@ -63,7 +64,6 @@ private:
     Ui::NostaRahaa *ui;
 
     QString nosto;
-    QTimer *objectTimerNosta;
 };
 
 #endif // NOSTARAHAA_H
