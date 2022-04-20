@@ -9,7 +9,6 @@ NostaRahaa::NostaRahaa(QWidget *parent) :
     ui->setupUi(this);
 
     objectTimerNosta = new QTimer;
-    objectTimerNosta->start(10000);
 
     connect(objectTimerNosta, SIGNAL(timeout()),
             this, SLOT(timer_slot_nosta()));

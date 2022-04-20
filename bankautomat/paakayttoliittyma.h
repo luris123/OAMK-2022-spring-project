@@ -3,11 +3,8 @@
 
 
 #include <QDialog>
+#include <QtDebug>
 #include <QTimer>
-
-#include "talletarahaa.h"
-#include "nostarahaa.h"
-
 
 namespace Ui {
 class paakayttoliittyma;
@@ -47,8 +44,6 @@ private slots:
 
 private:
     Ui::paakayttoliittyma *ui;
-    TalletaRahaa *objectTalletaRahaa; // Talleta rahaa aloitus
-    NostaRahaa *objectNostaRahaa;
     QTimer *objectTimer;
 
     QString valinta;

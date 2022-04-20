@@ -17,6 +17,8 @@ public:
     ~PinDialog();
 
     void pinkoodiVaarin();
+    QTimer *objectTimerPinDialog;
+
 
 private slots:
 
@@ -50,8 +52,6 @@ private:
     Ui::PinDialog *ui;
     QString PinKoodi;
     int yritys = 3;
-
-    QTimer *objectTimerPinDialog;
 
 signals:
     void pinkoodiEngine(QString);

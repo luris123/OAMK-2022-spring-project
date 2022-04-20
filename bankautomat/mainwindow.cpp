@@ -124,6 +124,7 @@ void MainWindow::asiakasTiedotSlot(QStringList tiedotLista)
     }
     else if(creditTilinumero != NULL)
     {
+        objectCreditOrDebit->objectTimerCredDeb->start(10000);
         objectCreditOrDebit->show();
     }
 
@@ -164,6 +165,7 @@ void MainWindow::tiliValittuSlot(QString tilinValinta)
 
 void MainWindow::nostaRahaaValittuSlot()
 {
+    objectNostaRahaa->objectTimerNosta->start(10000);
     objectNostaRahaa->show();
 }
 
@@ -201,6 +203,7 @@ void MainWindow::nostaRahaaSlot(QString nostoSumma)
 
 void MainWindow::talletaRahaaValittuSlot()
 {
+    objectTalletaRahaa->objectTimerTalleta->start(10000);
     objectTalletaRahaa->show();
 }
 
