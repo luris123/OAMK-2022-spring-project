@@ -70,6 +70,7 @@ private:
 
     int kiinteaHakuMaara = 0;
     int tapahtumatListaPituus = 0;
+    bool paikallinenBoolean = true;
 
 
 };
