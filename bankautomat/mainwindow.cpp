@@ -115,7 +115,7 @@ void MainWindow::asiakasTiedotSlot(QStringList tiedotLista)
     creditSaldo = tiedotLista[6];
     luottoraja = tiedotLista[7];
 
-    objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "10", "0");
+    objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "5", "0");
 
     if(creditTilinumero == NULL)
     {
@@ -226,28 +226,27 @@ void MainWindow::talletaRahaaSlot(QString talletusSumma)
 
 void MainWindow::tilitapahtumaValintaSlot(QString valinta)
 {
-    qDebug() << kiinteaHakuMaara;
-    qDebug() << objectpaakayttoliittyma->tarkistaListWidget();
     if(valinta == "ylos")
     {
-      if(kiinteaHakuMaara >= 0)
+      if(kiinteaHakuMaara - 10 >= 0)
         {
+
         kiinteaHakuMaara = kiinteaHakuMaara - 10;
         objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "10", QString::number(kiinteaHakuMaara));
         }
-      else
-          kiinteaHakuMaara = kiinteaHakuMaara + 10;
+      //else kiinteaHakuMaara = kiinteaHakuMaara + 10;
+
     }
     else if(valinta == "alas")
     {
-        if(tapahtumatListaPituus == 10)
+
+        if(tapahtumatListaPituus == 10 || paikallinenBoolean == true)
         {
+            paikallinenBoolean = false;
             kiinteaHakuMaara = kiinteaHakuMaara + 10;
             objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "10", QString::number(kiinteaHakuMaara));
         }
-
     }
-
 }
 
 void MainWindow::singleShotTilitapahtumaSlot()
