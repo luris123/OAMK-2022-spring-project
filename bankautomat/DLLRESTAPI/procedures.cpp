@@ -56,11 +56,6 @@ void procedures::getTilitapahtumatSlot(QNetworkReply *reply)
        i++;
     }
 
-    for(int j = 0; j < tiedotList.length(); j++)
-    {
-        qDebug() << tiedotList[j];
-    }
-
      emit tilitapahtumaSignal(tiedotList);
 }
 

@@ -21,10 +21,10 @@ NostaRahaa::~NostaRahaa()
     delete objectTimerNosta;
 }
 
-void NostaRahaa::virheIlmotus()
+void NostaRahaa::virheIlmoitus()
 {
-    ui->lineEdit->clear();
     nosto.clear();
+    ui->lineEdit->clear();
     ui->lineEdit->setText("Saldo ei riitä");
 }
 
@@ -132,12 +132,8 @@ void NostaRahaa::on_enterBtn_clicked()
     else
     {
         nosto = ui -> lineEdit -> text();
-        qDebug() << "nostaRahaaBtn clicked";
         emit nostaRahaa(nosto);
-        ui->lineEdit->clear();
-        nosto.clear();
     }
-
 
     objectTimerNosta->start(10000);
 }
