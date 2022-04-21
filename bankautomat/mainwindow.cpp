@@ -63,10 +63,7 @@ MainWindow::~MainWindow()
     delete ui;
     delete objectDLLSerialPort;
     delete objectDLLPinCode;
-
-    qDebug() << "on";
     delete objectDLLRESTAPI;
-    qDebug() << "on2";
 
     ui = nullptr;
     objectDLLSerialPort = nullptr;
@@ -240,6 +237,24 @@ void MainWindow::singleShotTilitapahtumaSlot()
 
 void MainWindow::kirjauduUlosSlot()
 {
+    delete objectDLLSerialPort;
+    delete objectDLLPinCode;
+    delete objectDLLRESTAPI;
+
+    delete objectpaakayttoliittyma;
+    delete objectCreditOrDebit;
+    delete objectNostaRahaa;
+    delete objectTalletaRahaa;
+
+    objectDLLSerialPort = nullptr;
+    objectDLLPinCode = nullptr;
+    objectDLLRESTAPI = nullptr;
+
+    objectpaakayttoliittyma = nullptr;
+    objectCreditOrDebit = nullptr;
+    objectNostaRahaa = nullptr;
+    objectTalletaRahaa = nullptr;
+
     kortinnumero = nullptr;
     id_Tili = nullptr;
     id_Asiakas = nullptr;
@@ -250,22 +265,58 @@ void MainWindow::kirjauduUlosSlot()
     creditSaldo = nullptr;
     valinta = nullptr;
     luottoraja = nullptr;
+    tilitapahtumat.clear();
+    kiinteaHakuMaara = 0;
+    tapahtumatListaPituus = 0;
+    paikallinenBoolean = true;
 
-    delete objectDLLPinCode;
-    delete objectCreditOrDebit;
-    delete objectDLLSerialPort;
-    delete objectDLLRESTAPI;
-
-    objectDLLSerialPort = nullptr;
-    objectDLLPinCode = nullptr;
-    objectDLLRESTAPI = nullptr;
-
+    objectDLLSerialPort = new DLLSerialPort;
     objectDLLPinCode = new DLLPinCode;
+    objectDLLRESTAPI = new DLLRESTAPI;
+
+    objectpaakayttoliittyma = new paakayttoliittyma;
     objectCreditOrDebit = new creditOrDebit;
+    objectNostaRahaa = new NostaRahaa;
+    objectTalletaRahaa = new TalletaRahaa;
+
+    connect(objectDLLSerialPort, SIGNAL(kortinNumeroSignal(QString)),
+            this, SLOT(kortinNumeroSlot(QString)));
 
     connect(objectDLLPinCode, SIGNAL(pinkoodiInterface(QString)),
            this, SLOT(pinkoodiSlot(QString)));
+
+    connect(objectDLLRESTAPI, SIGNAL(loginSignalToExe(QString)),
+            this, SLOT(loginSlot(QString)));
+
+    connect(objectDLLRESTAPI, SIGNAL(tiedotListToExe(QStringList)),
+            this, SLOT(asiakasTiedotSlot(QStringList)));
+
+    connect(objectDLLRESTAPI, SIGNAL(tilitapahtumatToExe(QStringList)),
+            this, SLOT(tilitapahtumatSlot(QStringList)));
+
     connect(objectCreditOrDebit, SIGNAL(tilinValinta(QString)),
             this, SLOT(tiliValittuSlot(QString)));
+
+    connect(objectpaakayttoliittyma, SIGNAL(nostaRahaaValittu()),
+            this, SLOT(nostaRahaaValittuSlot()));
+
+    connect(objectNostaRahaa, SIGNAL(nostaRahaa(QString)),
+            this, SLOT(nostaRahaaSlot(QString)));
+
+    connect(objectpaakayttoliittyma, SIGNAL(talletaRahaaValittu()),
+            this, SLOT(talletaRahaaValittuSlot()));
+
+    connect(objectTalletaRahaa, SIGNAL(talletaRahaa(QString)),
+            this, SLOT(talletaRahaaSlot(QString)));
+
+    connect(objectCreditOrDebit, SIGNAL(kirjauduUlosSignal()),
+            this, SLOT(kirjauduUlosSlot()));
+
+    connect(objectpaakayttoliittyma, SIGNAL(tilitapahtumaValinta(QString)),
+            this, SLOT(tilitapahtumaValintaSlot(QString)));
+
+    connect(objectpaakayttoliittyma, SIGNAL(kirjauduUlosSignal()),
+            this, SLOT(kirjauduUlosSlot()));
+
 }
 

@@ -13,7 +13,7 @@ SerialPortEngine::SerialPortEngine()
 
     porttiOlio->setPortName(portti);
     qDebug() << portti << " on auki: " <<  porttiOlio->open(QIODevice::ReadOnly);
-    //objectQTimer->start(1000);
+    objectQTimer->start(1000);
 }
 
 SerialPortEngine::~SerialPortEngine()
