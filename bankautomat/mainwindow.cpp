@@ -7,7 +7,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
      ui->setupUi(this);
 
-
     objectDLLSerialPort = new DLLSerialPort;
     objectDLLPinCode = new DLLPinCode;
     objectDLLRESTAPI = new DLLRESTAPI;
@@ -64,7 +63,10 @@ MainWindow::~MainWindow()
     delete ui;
     delete objectDLLSerialPort;
     delete objectDLLPinCode;
+
+    qDebug() << "on";
     delete objectDLLRESTAPI;
+    qDebug() << "on2";
 
     ui = nullptr;
     objectDLLSerialPort = nullptr;
@@ -94,11 +96,12 @@ void MainWindow::pinkoodiSlot(QString pinkoodiDLL)
 void MainWindow::loginSlot(QString login)
 {
     qDebug() << "login: " << login;
+
     if(login == "true")
       {       
         objectDLLRESTAPI->haeAsiakkaanTiedot("0600064972");
       }
-      else if(login == "false")
+    else if(login == "false")
       {
         objectDLLPinCode->pinkoodiVaarin();
       }
@@ -127,12 +130,10 @@ void MainWindow::asiakasTiedotSlot(QStringList tiedotLista)
         objectCreditOrDebit->objectTimerCredDeb->start(10000);
         objectCreditOrDebit->show();
     }
-
 }
 
 void MainWindow::tilitapahtumatSlot(QStringList paramTilitapahtumat)
 {
-    objectpaakayttoliittyma->puhdistaListWidget();
     tapahtumatListaPituus = paramTilitapahtumat.count();
     tilitapahtumat = paramTilitapahtumat;
     
@@ -149,18 +150,18 @@ void MainWindow::tilitapahtumatSlot(QStringList paramTilitapahtumat)
 
 void MainWindow::tiliValittuSlot(QString tilinValinta)
 {
+    valinta = tilinValinta;
+
     if(tilinValinta == "debit")
     {
-        valinta = tilinValinta;
         objectpaakayttoliittyma->asetaTiedot(valinta, nimi, debitSaldo, tilitapahtumat);
-        objectpaakayttoliittyma->show();
     }
     else if(tilinValinta == "credit")
     {
-        valinta = tilinValinta;
         objectpaakayttoliittyma->asetaTiedot(valinta, nimi, creditSaldo, tilitapahtumat);
-        objectpaakayttoliittyma->show();
     }
+
+    objectpaakayttoliittyma->show();
 }
 
 void MainWindow::nostaRahaaValittuSlot()
@@ -171,32 +172,22 @@ void MainWindow::nostaRahaaValittuSlot()
 
 void MainWindow::nostaRahaaSlot(QString nostoSumma)
 {
-    if(valinta == "debit")
-    {
-        if(nostoSumma.toFloat() <= debitSaldo.toFloat())
-        {
-            objectDLLRESTAPI->suoritaDebitNosto(id_Tili, debitTilinumero, "0600064972", debitSaldo, nostoSumma);
+    if(valinta == "debit" && nostoSumma.toFloat() <= debitSaldo.toFloat())
+    {       
+        objectDLLRESTAPI->suoritaDebitNosto(id_Tili, debitTilinumero, "0600064972", debitSaldo, nostoSumma);
 
-            debitSaldo = QString::number(debitSaldo.toFloat() - nostoSumma.toFloat());
-        }
-        else
-        {
-            objectNostaRahaa->virheIlmoitus();
-        }
+        debitSaldo = QString::number(debitSaldo.toFloat() - nostoSumma.toFloat());
     }
-    else if(valinta == "credit")
-    {
-       if(creditSaldo.toFloat() - nostoSumma.toFloat() >= -(luottoraja.toFloat()))
-       {
-           objectDLLRESTAPI->suoritaCreditNosto(id_Tili, creditTilinumero, "0600064972", creditSaldo, nostoSumma, luottoraja);
+    else if(valinta == "credit" && creditSaldo.toFloat() - nostoSumma.toFloat() >= -(luottoraja.toFloat()))
+    {    
+        objectDLLRESTAPI->suoritaCreditNosto(id_Tili, creditTilinumero, "0600064972", creditSaldo, nostoSumma, luottoraja);
 
-           creditSaldo = QString::number(creditSaldo.toFloat() - nostoSumma.toFloat());
-       }
-       else
-       {
-           objectNostaRahaa->virheIlmoitus();
-       }
+        creditSaldo = QString::number(creditSaldo.toFloat() - nostoSumma.toFloat());
     }
+    else
+     {
+        objectNostaRahaa->virheIlmoitus();
+     }
 
     QTimer::singleShot(500, this, SLOT(singleShotTilitapahtumaSlot()));
 }
@@ -229,26 +220,16 @@ void MainWindow::talletaRahaaSlot(QString talletusSumma)
 
 void MainWindow::tilitapahtumaValintaSlot(QString valinta)
 {
-    if(valinta == "ylos")
-    {
-      if(kiinteaHakuMaara - 10 >= 0)
-        {
-
+    if(valinta == "ylos" && kiinteaHakuMaara - 10 >= 0)
+    {    
         kiinteaHakuMaara = kiinteaHakuMaara - 10;
         objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "10", QString::number(kiinteaHakuMaara));
-        }
-      //else kiinteaHakuMaara = kiinteaHakuMaara + 10;
-
     }
-    else if(valinta == "alas")
-    {
-
-        if(tapahtumatListaPituus == 10 || paikallinenBoolean == true)
-        {
-            paikallinenBoolean = false;
-            kiinteaHakuMaara = kiinteaHakuMaara + 10;
-            objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "10", QString::number(kiinteaHakuMaara));
-        }
+    else if(valinta == "alas" && (tapahtumatListaPituus == 10 || paikallinenBoolean == true))
+    {      
+        paikallinenBoolean = false;
+        kiinteaHakuMaara = kiinteaHakuMaara + 10;
+        objectDLLRESTAPI->haeTilitapahtumat(id_Tili, "10", QString::number(kiinteaHakuMaara));
     }
 }
 
@@ -272,6 +253,12 @@ void MainWindow::kirjauduUlosSlot()
 
     delete objectDLLPinCode;
     delete objectCreditOrDebit;
+    delete objectDLLSerialPort;
+    delete objectDLLRESTAPI;
+
+    objectDLLSerialPort = nullptr;
+    objectDLLPinCode = nullptr;
+    objectDLLRESTAPI = nullptr;
 
     objectDLLPinCode = new DLLPinCode;
     objectCreditOrDebit = new creditOrDebit;

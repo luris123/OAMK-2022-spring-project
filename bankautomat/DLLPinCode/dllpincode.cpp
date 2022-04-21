@@ -11,6 +11,7 @@ DLLPinCode::DLLPinCode()
 DLLPinCode::~DLLPinCode()
 {
     delete objectPinDialog;
+
     objectPinDialog = nullptr;
 }
 

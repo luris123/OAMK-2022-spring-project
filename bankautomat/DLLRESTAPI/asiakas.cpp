@@ -41,5 +41,8 @@ void asiakas::getAsiakasSlot(QNetworkReply *reply)
        tiedotList.insert(7, QString::number(json_obj["luottoraja"].toInt()));
     }
     emit tiedotListSignal(tiedotList);
+
+    getManager->deleteLater();
+    reply->deleteLater();
 }
 

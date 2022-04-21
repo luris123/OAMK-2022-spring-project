@@ -5,7 +5,6 @@ login::login(QString url)
     base_url = url+"/login";
 }
 
-
 void login::yritaKirjautua(QString kortinnumero,QString pinkoodi)
 {
     QJsonObject jsonObj;
@@ -30,7 +29,7 @@ void login::loginSlot(QNetworkReply *reply)
 
     emit loginSignalToInterface(dataAsString);
 
-    reply->deleteLater();
     loginManager->deleteLater();
+    reply->deleteLater();
 }
 

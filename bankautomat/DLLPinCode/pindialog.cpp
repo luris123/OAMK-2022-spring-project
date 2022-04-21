@@ -6,6 +6,7 @@ PinDialog::PinDialog(QWidget *parent) :
     ui(new Ui::PinDialog)
 {
     ui->setupUi(this);
+
     ui->lineEdit->setMaxLength(4);
 
     objectTimerPinDialog = new QTimer;
@@ -17,8 +18,10 @@ PinDialog::PinDialog(QWidget *parent) :
 PinDialog::~PinDialog()
 {
     delete ui;
-    ui = nullptr;
     delete objectTimerPinDialog;
+
+    ui = nullptr;
+    objectTimerPinDialog = nullptr;
 }
 
 void PinDialog::pinkoodiVaarin()

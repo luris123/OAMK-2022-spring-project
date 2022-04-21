@@ -5,6 +5,7 @@ procedures::procedures(QString url)
     base_url = url + "/procedures";
 }
 
+
 void procedures::suoritaDebitNosto(QString id, QString tilinumero, QString kortinnumero, QString debitSaldo, QString Summa)
 {
     QNetworkRequest request((base_url + "/nosto" + "/" + id + "/" + tilinumero + "/" + kortinnumero + "/" + debitSaldo + "/" + Summa));
@@ -35,6 +36,9 @@ void procedures::getSlot(QNetworkReply *reply)
 
     qDebug() << response_data;
 
+    getManager->deleteLater();
+    reply->deleteLater();
+
 }
 
 void procedures::getTilitapahtumatSlot(QNetworkReply *reply)
@@ -47,6 +51,7 @@ void procedures::getTilitapahtumatSlot(QNetworkReply *reply)
     QStringList tiedotList;
 
     int i = 0;
+
     foreach (const QJsonValue &value, json_array) {
 
        QJsonObject json_obj = value.toObject();
@@ -57,6 +62,9 @@ void procedures::getTilitapahtumatSlot(QNetworkReply *reply)
     }
 
      emit tilitapahtumaSignal(tiedotList);
+
+    getManager->deleteLater();
+    reply->deleteLater();
 }
 
 void procedures::suoritaTalletus(QString tilityyppi, QString id, QString tilinumero, QString kortinnumero, QString talletussumma)

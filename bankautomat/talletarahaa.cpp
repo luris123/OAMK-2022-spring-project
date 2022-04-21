@@ -16,8 +16,12 @@ TalletaRahaa::TalletaRahaa(QWidget *parent) :
 
 TalletaRahaa::~TalletaRahaa()
 {
-    delete objectTimerTalleta;
     delete ui;
+    delete objectTimerTalleta;
+
+    ui = nullptr;
+    objectTimerTalleta = nullptr;
+
 }
 
 

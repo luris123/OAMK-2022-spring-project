@@ -16,6 +16,7 @@ class TalletaRahaa : public QDialog
 public:
     explicit TalletaRahaa(QWidget *parent = nullptr);
     ~TalletaRahaa();
+
     QTimer *objectTimerTalleta;
 
 signals:
