@@ -20,7 +20,7 @@ void procedures::suoritaDebitNosto(QString id, QString tilinumero, QString korti
 
 void procedures::suoritaCreditNosto(QString id, QString tilinumero, QString kortinnumero, QString creditSaldo, QString Summa, QString luottoraja)
 {
-    QNetworkRequest request((base_url + "/nosto" + "/" + id + "/" + tilinumero + "/" + kortinnumero + "/" + ("-")+creditSaldo + "/" + Summa + "/" + ("-")+luottoraja));
+    QNetworkRequest request((base_url + "/nosto" + "/" + id + "/" + tilinumero + "/" + kortinnumero + "/" + creditSaldo + "/" + Summa + "/" + ("-")+luottoraja));
 
     getManager = new QNetworkAccessManager(this);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
