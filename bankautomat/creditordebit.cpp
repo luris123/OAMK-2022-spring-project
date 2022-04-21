@@ -16,8 +16,10 @@ creditOrDebit::creditOrDebit(QWidget *parent) :
 creditOrDebit::~creditOrDebit()
 {
     delete ui;
-    ui = nullptr;
     delete objectTimerCredDeb;
+
+    ui = nullptr;
+    objectTimerCredDeb = nullptr;
 }
 
 void creditOrDebit::timer_slot_CredDeb()
@@ -31,17 +33,14 @@ void creditOrDebit::on_debit_btn_clicked()
     objectTimerCredDeb->start(10000);
 }
 
-
 void creditOrDebit::on_credit_btn_clicked()
 {
     emit tilinValinta("credit");
     objectTimerCredDeb->start(10000);
 }
 
-
 void creditOrDebit::on_kirjauduUlos_btn_clicked()
 {
     this->close();
     emit kirjauduUlosSignal();
 }
-

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Pääkäyttöliittymä</string>
   </property>
   <widget class="QLabel" name="saldoLabel1">
    <property name="geometry">

@@ -18,6 +18,9 @@ NostaRahaa::~NostaRahaa()
 {
     delete ui;
     delete objectTimerNosta;
+
+    ui = nullptr;
+    objectTimerNosta = nullptr;
 }
 
 void NostaRahaa::virheIlmoitus()
@@ -133,14 +136,15 @@ void NostaRahaa::on_enterBtn_clicked()
         nosto = ui -> lineEdit -> text();
         emit nostaRahaa(nosto);
     }
-
     objectTimerNosta->start(10000);
 }
 
 
 void NostaRahaa::on_closeBtn_clicked()
 {
-     this->close();
+    ui->lineEdit->clear();
+    nosto.clear();
+    this->close();
 }
 
 

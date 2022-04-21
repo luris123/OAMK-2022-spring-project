@@ -18,9 +18,9 @@ SerialPortEngine::SerialPortEngine()
 
 SerialPortEngine::~SerialPortEngine()
 {
-
     delete porttiOlio;
     delete objectQTimer;
+
     porttiOlio = nullptr;
     objectQTimer = nullptr;
 }
@@ -28,6 +28,7 @@ SerialPortEngine::~SerialPortEngine()
 void SerialPortEngine::readSerialSlot()
 {
     QString kortinnumero = porttiOlio->readAll();
+
     if(!kortinnumero.isEmpty())
     {
         kortinnumero.remove(0, 3);

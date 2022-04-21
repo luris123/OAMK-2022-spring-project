@@ -11,6 +11,7 @@ DLLSerialPort::DLLSerialPort()
 DLLSerialPort::~DLLSerialPort()
 {
     delete objectSerialPortEngine;
+
     objectSerialPortEngine = nullptr;
 }
 

@@ -17,10 +17,14 @@ paakayttoliittyma::~paakayttoliittyma()
 {
     delete ui;
     delete objectTimer;
+
+    ui = nullptr;
+    objectTimer = nullptr;
 }
 
 void paakayttoliittyma::asetaTiedot(QString tilinValinta, QString nimi, QString saldo, QStringList tilitapahtumat)
 {
+    ui->listWidget->clear();
 
     if(tilinValinta == "credit")
     {
@@ -37,16 +41,6 @@ void paakayttoliittyma::asetaTiedot(QString tilinValinta, QString nimi, QString 
         ui->listWidget->addItems(tilitapahtumat);
     }
     objectTimer->start(30000); // aloittaa timerin
-}
-
-void paakayttoliittyma::puhdistaListWidget()
-{
-    ui->listWidget->clear();
-}
-
-int paakayttoliittyma::tarkistaListWidget()
-{
-    return ui->listWidget->count();
 }
 
 void paakayttoliittyma::timer_slot()
@@ -81,7 +75,6 @@ void paakayttoliittyma::on_ylos_btn_clicked()
 {
     valinta = "ylos";
     emit tilitapahtumaValinta(valinta);
-    ui->listWidget->count();
 }
 
 
