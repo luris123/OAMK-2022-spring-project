@@ -136,11 +136,11 @@ void MainWindow::tilitapahtumatSlot(QStringList paramTilitapahtumat)
     
     if(valinta == "debit")
     {
-         objectpaakayttoliittyma->asetaTiedot(valinta, nimi, debitSaldo, tilitapahtumat);
+         objectpaakayttoliittyma->asetaTiedot(valinta, nimi, debitSaldo, NULL, tilitapahtumat);
     }
     else if(valinta=="credit")
     {
-        objectpaakayttoliittyma->asetaTiedot(valinta, nimi, creditSaldo, tilitapahtumat);
+        objectpaakayttoliittyma->asetaTiedot(valinta, nimi, creditSaldo, luottoraja, tilitapahtumat);
     }
 
 }
@@ -151,11 +151,11 @@ void MainWindow::tiliValittuSlot(QString tilinValinta)
 
     if(tilinValinta == "debit")
     {
-        objectpaakayttoliittyma->asetaTiedot(valinta, nimi, debitSaldo, tilitapahtumat);
+        objectpaakayttoliittyma->asetaTiedot(valinta, nimi, debitSaldo, NULL, tilitapahtumat);
     }
     else if(tilinValinta == "credit")
     {
-        objectpaakayttoliittyma->asetaTiedot(valinta, nimi, creditSaldo, tilitapahtumat);
+        objectpaakayttoliittyma->asetaTiedot(valinta, nimi, creditSaldo, luottoraja, tilitapahtumat);
     }
 
     objectpaakayttoliittyma->show();
