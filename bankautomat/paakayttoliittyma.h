@@ -18,7 +18,7 @@ public:
      explicit paakayttoliittyma(QWidget *parent = nullptr);
     ~paakayttoliittyma();
 
-    void asetaTiedot(QString, QString, QString, QStringList);
+    void asetaTiedot(QString, QString, QString, QString, QStringList);
 
 signals:
     void nostaRahaaValittu();

@@ -125,7 +125,7 @@ void NostaRahaa::on_A0_clicked()
 
 void NostaRahaa::on_enterBtn_clicked()
 {
-    if(nosto.startsWith("0") == true)
+    if(nosto.startsWith("0") == true || nosto.toInt() % 10 != 0)
     {
         ui->lineEdit->clear();
         nosto.clear();

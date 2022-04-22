@@ -22,7 +22,7 @@ paakayttoliittyma::~paakayttoliittyma()
     objectTimer = nullptr;
 }
 
-void paakayttoliittyma::asetaTiedot(QString tilinValinta, QString nimi, QString saldo, QStringList tilitapahtumat)
+void paakayttoliittyma::asetaTiedot(QString tilinValinta, QString nimi, QString saldo, QString luottoraja, QStringList tilitapahtumat)
 {
     ui->listWidget->clear();
 
@@ -31,6 +31,8 @@ void paakayttoliittyma::asetaTiedot(QString tilinValinta, QString nimi, QString 
         ui->ownerLabel->setText(nimi);
         ui->saldoLabel1->setText("Credit Saldo: ");
         ui->saldoLabel2->setText(saldo);
+        ui->luottoraja_label1->setText("Luottoraja:");
+        ui->luottoraja_label2->setText(luottoraja);
         ui->listWidget->addItems(tilitapahtumat);
     }
     else if(tilinValinta == "debit")
@@ -38,6 +40,8 @@ void paakayttoliittyma::asetaTiedot(QString tilinValinta, QString nimi, QString 
         ui->ownerLabel->setText(nimi);
         ui->saldoLabel1->setText("Debit Saldo: ");
         ui->saldoLabel2->setText(saldo);
+        ui->luottoraja_label1->clear();
+        ui->luottoraja_label2->clear();
         ui->listWidget->addItems(tilitapahtumat);
     }
     objectTimer->start(30000); // aloittaa timerin
