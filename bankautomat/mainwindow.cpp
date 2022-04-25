@@ -55,6 +55,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(objectpaakayttoliittyma, SIGNAL(kirjauduUlosSignal()),
             this, SLOT(kirjauduUlosSlot()));
 
+    connect(objectNostaRahaa, SIGNAL(PaaTimerNSignal()),
+            this, SLOT(PaaTimerSlot()));
+
+    connect(objectTalletaRahaa, SIGNAL(PaaTimerTSignal()),
+            this, SLOT(PaaTimerSlot()));
+
 
 }
 
@@ -120,6 +126,7 @@ void MainWindow::asiakasTiedotSlot(QStringList tiedotLista)
     if(creditTilinumero == NULL)
     {
         valinta = "debit";
+        objectpaakayttoliittyma->objectPaaTimer->start(30000);
         objectpaakayttoliittyma->show();
     }
     else if(creditTilinumero != NULL)
@@ -157,7 +164,7 @@ void MainWindow::tiliValittuSlot(QString tilinValinta)
     {
         objectpaakayttoliittyma->asetaTiedot(valinta, nimi, creditSaldo, luottoraja, tilitapahtumat);
     }
-
+    objectpaakayttoliittyma->objectPaaTimer->start(30000);
     objectpaakayttoliittyma->show();
 }
 
@@ -318,5 +325,10 @@ void MainWindow::kirjauduUlosSlot()
     connect(objectpaakayttoliittyma, SIGNAL(kirjauduUlosSignal()),
             this, SLOT(kirjauduUlosSlot()));
 
+}
+
+void MainWindow::PaaTimerSlot()
+{
+    objectpaakayttoliittyma->objectPaaTimer->start(30000);
 }
 

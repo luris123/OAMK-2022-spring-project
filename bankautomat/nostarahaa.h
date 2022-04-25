@@ -21,6 +21,7 @@ public:
 
 signals:
     void nostaRahaa(QString);
+    void PaaTimerNSignal();
 
 private slots:
 

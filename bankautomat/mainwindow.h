@@ -41,6 +41,7 @@ public slots:
     void tilitapahtumaValintaSlot(QString);
     void singleShotTilitapahtumaSlot();
     void kirjauduUlosSlot();
+    void PaaTimerSlot();
 
 private:
     Ui::MainWindow *ui;

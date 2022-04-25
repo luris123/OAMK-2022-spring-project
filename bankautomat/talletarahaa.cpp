@@ -27,6 +27,7 @@ TalletaRahaa::~TalletaRahaa()
 
 void TalletaRahaa::timer_slot_talleta()
 {
+    emit PaaTimerTSignal();
     this->close();
 }
 
@@ -129,6 +130,7 @@ void TalletaRahaa::on_EnterBtn_clicked()
 
 void TalletaRahaa::on_SuljeBtn_clicked()
 {
+    emit PaaTimerTSignal();
     this->close();
 }
 
