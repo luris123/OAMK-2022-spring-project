@@ -27,14 +27,16 @@ SerialPortEngine::~SerialPortEngine()
 
 void SerialPortEngine::readSerialSlot()
 {
-    QString kortinnumero = porttiOlio->readAll();
-
-    if(!kortinnumero.isEmpty())
+    if(porttiOlio->isOpen() == true)
     {
+        QString kortinnumero = porttiOlio->readAll();
+
+        if(!kortinnumero.isEmpty())
+        {
         kortinnumero.remove(0, 3);
         kortinnumero.remove(10, 4);
         emit  kortinnumeroSignal(kortinnumero);
         objectQTimer->stop();
+        }
     }
-
 }
