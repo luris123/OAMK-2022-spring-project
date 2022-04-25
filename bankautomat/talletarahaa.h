@@ -21,6 +21,7 @@ public:
 
 signals:
    void talletaRahaa(QString);
+   void PaaTimerTSignal();
 
 private slots:
 

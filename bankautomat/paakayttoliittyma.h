@@ -19,6 +19,7 @@ public:
     ~paakayttoliittyma();
 
     void asetaTiedot(QString, QString, QString, QString, QStringList);
+    QTimer *objectPaaTimer;
 
 signals:
     void nostaRahaaValittu();
@@ -42,7 +43,6 @@ private slots:
 
 private:
     Ui::paakayttoliittyma *ui;
-    QTimer *objectTimer;
 
     QString valinta;
 };

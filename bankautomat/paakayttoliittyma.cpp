@@ -7,19 +7,19 @@ paakayttoliittyma::paakayttoliittyma(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    objectTimer = new QTimer;
+    objectPaaTimer = new QTimer;
 
-    connect(objectTimer, SIGNAL(timeout()),
+    connect(objectPaaTimer, SIGNAL(timeout()),
             this, SLOT(timer_slot()));
 }
 
 paakayttoliittyma::~paakayttoliittyma()
 {
     delete ui;
-    delete objectTimer;
+    delete objectPaaTimer;
 
     ui = nullptr;
-    objectTimer = nullptr;
+    objectPaaTimer = nullptr;
 }
 
 void paakayttoliittyma::asetaTiedot(QString tilinValinta, QString nimi, QString saldo, QString luottoraja, QStringList tilitapahtumat)
@@ -44,28 +44,24 @@ void paakayttoliittyma::asetaTiedot(QString tilinValinta, QString nimi, QString 
         ui->luottoraja_label2->clear();
         ui->listWidget->addItems(tilitapahtumat);
     }
-    objectTimer->start(30000); // aloittaa timerin
 }
 
 void paakayttoliittyma::timer_slot()
 {
     qDebug() << "Pää aika loppui";
-    this->close();
+    emit kirjauduUlosSignal();
 }
 
 void paakayttoliittyma::on_depositBtn_clicked()
 {
-
-   objectTimer->stop();
-   emit talletaRahaaValittu();
-   objectTimer->start(30000);
+    objectPaaTimer->stop();
+    emit talletaRahaaValittu();
 }
 
 void paakayttoliittyma::on_withdrawBtn_clicked()
 {
-    objectTimer->stop();
+    objectPaaTimer->stop();
     emit nostaRahaaValittu();
-    objectTimer->start(30000);
 }
 
 void paakayttoliittyma::on_logoutBtn_clicked()
@@ -77,6 +73,7 @@ void paakayttoliittyma::on_logoutBtn_clicked()
 
 void paakayttoliittyma::on_ylos_btn_clicked()
 {
+    objectPaaTimer->start(30000);
     valinta = "ylos";
     emit tilitapahtumaValinta(valinta);
 }
@@ -84,6 +81,7 @@ void paakayttoliittyma::on_ylos_btn_clicked()
 
 void paakayttoliittyma::on_alas_btn_clicked()
 {
+    objectPaaTimer->start(30000);
     valinta = "alas";
     emit tilitapahtumaValinta(valinta);
 }

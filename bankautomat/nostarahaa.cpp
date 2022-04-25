@@ -32,6 +32,7 @@ void NostaRahaa::virheIlmoitus()
 
 void NostaRahaa::timer_slot_nosta()
 {
+    emit PaaTimerNSignal();
     this->close();
 }
 
@@ -142,6 +143,7 @@ void NostaRahaa::on_enterBtn_clicked()
 
 void NostaRahaa::on_closeBtn_clicked()
 {
+    emit PaaTimerNSignal();
     ui->lineEdit->clear();
     nosto.clear();
     this->close();
