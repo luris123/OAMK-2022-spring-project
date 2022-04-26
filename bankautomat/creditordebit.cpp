@@ -24,19 +24,19 @@ creditOrDebit::~creditOrDebit()
 
 void creditOrDebit::timer_slot_CredDeb()
 {
-    this->close();
+    emit kirjauduUlosSignal();
 }
 
 void creditOrDebit::on_debit_btn_clicked()
 {
     emit tilinValinta("debit");
-    objectTimerCredDeb->start(10000);
+    objectTimerCredDeb->stop();
 }
 
 void creditOrDebit::on_credit_btn_clicked()
 {
     emit tilinValinta("credit");
-    objectTimerCredDeb->start(10000);
+    objectTimerCredDeb->stop();
 }
 
 void creditOrDebit::on_kirjauduUlos_btn_clicked()

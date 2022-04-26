@@ -154,6 +154,7 @@ void MainWindow::tilitapahtumatSlot(QStringList paramTilitapahtumat)
 
 void MainWindow::tiliValittuSlot(QString tilinValinta)
 {
+    objectCreditOrDebit->close();
     valinta = tilinValinta;
 
     if(tilinValinta == "debit")
