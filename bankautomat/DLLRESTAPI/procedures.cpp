@@ -56,7 +56,7 @@ void procedures::getTilitapahtumatSlot(QNetworkReply *reply)
 
        QJsonObject json_obj = value.toObject();
 
-       tiedotList.insert(i, QString(json_obj["pvm_ja_aika"].toString().replace("T", " ").replace(19, 5, "")) + ", " + QString(json_obj["tilinumero"].toString()) + ", " + QString(json_obj["kortinnumero"].toString()) + ", " + QString(json_obj["tapahtuma"].toString()) + ", " + QString::number(json_obj["summa"].toInt()));
+       tiedotList.insert(i, QString(json_obj["pvm_ja_aika"].toString().replace("T", " ").replace(19, 5, "")) + ", " + QString(json_obj["tilinumero"].toString()) + ", " + QString(json_obj["kortinnumero"].toString()) + ", " + QString(json_obj["tapahtuma"].toString()) + ", " + QString::number(json_obj["summa"].toDouble()));
 
        i++;
     }
